@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Satoshi", sans-serif;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  padding-bottom: 120px;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 860px;
+}
+
+.hero-side {
+  width: 55%;
+  border-radius: 20px;
+  object-fit: cover;
+  position: absolute;
+  top: 180px;
+  opacity: 0.8;
+}
+
+.hero-side.left {
+  left: -5%;
+  transform: scale(1);
+}
+
+.hero-side.right {
+  right: -5%;
+  transform: scale(1);
+}
+
+.hero-main {
+  width: 70%;
+  border-radius: 50px;
+  object-fit: cover;
+  z-index: 2;
+}
+
+/* --- Search card --- */
+.search-card {
+  position: absolute;
+  left: 50%;
+  bottom: 10px; /* ✅ Naik lebih dekat ke foto, sebelumnya -60px */
+  transform: translateX(-50%);
+  background: white;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 20px 32px; /* ✅ sedikit lebih kecil agar proporsional */
+  text-align: center;
+  width: 45%; /* ✅ lebih ramping sedikit biar estetis */
+  z-index: 3;
+}
+
+/* ✅ Gradient text title */
+.search-card h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  font-weight: 550;
+  background: linear-gradient(90deg, #246afe 18%, #9747ff 37%, #ffba08 74%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: left;
+  width: fit-content;
+}
+
+/* --- Search bar --- */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ✅ Padding kanan-kiri lebih kecil */
+.search-bar select,
+.search-bar input {
+  padding: 8px 10px;
+  border: 1px solid #246afe;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.search-bar button {
+  background: #005cff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search-bar button:hover {
+  background: #0040c1;
+}
