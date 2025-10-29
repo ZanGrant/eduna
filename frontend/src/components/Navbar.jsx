@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../styles/Navbar.css";
 import logo from "../assets/Images/eduna-logo.png";
 
@@ -10,15 +11,19 @@ const Navbar = () => {
       </div>
 
       <ul className="nav-links">
-        <li><a href="#" className="active">Home</a></li>
-        <li><a href="#">Explore</a></li>
-        <li><a href="#">Challenge</a></li>
-        <li><a href="#">Community</a></li>
+        <li><Link to="/" className="active">Home</Link></li>
+        <li><Link to="/explore">Explore</Link></li>
+        <li><Link to="/challenge">Challenge</Link></li>
+        <li><Link to="/community">Community</Link></li>
       </ul>
 
       <div className="auth-buttons">
-        <button className="login-btn">Login</button>
-        <button className="signup-btn">Sign Up</button>
+        <Link to="/login">
+          <button className="login-btn">Login</button>
+        </Link>
+        <Link to="/register">
+          <button className="signup-btn">Sign Up</button>
+        </Link>
       </div>
     </nav>
   );
