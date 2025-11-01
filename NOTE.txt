@@ -1,0 +1,2 @@
+node_modules jgn masuk ke repo,
+itu tinggal npm install berdasarkan package.json dan package-lock.json
