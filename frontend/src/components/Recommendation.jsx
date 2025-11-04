@@ -1,5 +1,10 @@
 import React from 'react';
 import "../styles/Recommendation.css";
+import museumImg from "../assets/images/Museum.png";
+import ranohImg from "../assets/images/RanohIsland.png";
+import vietnamImg from "../assets/images/VietnamCamp.png"
+import hutanImg from "../assets/images/HutanWisataMataKucing.png"
+
 
 const RecommendationExplore = () => {
   const locations = [
@@ -7,28 +12,28 @@ const RecommendationExplore = () => {
       id: 1,
       title: "Museum Batam Raja Ali Haji",
       category: "Heritage Tourism",
-      image: "../assets/images/Museum.png",
+      image: museumImg,
       comingSoon: false
     },
     {
       id: 2,
       title: "Ranoh Island Resort",
       category: "Nature Tourism",
-      image: "../assets/images/Museum.png",
+      image: ranohImg,
       comingSoon: true
     },
     {
       id: 3,
       title: "Vietnam Camp, Galang Island",
       category: "Heritage Tourism",
-      image: "../assets/images/Museum.png",
+      image: vietnamImg,
       comingSoon: true
     },
     {
       id: 4,
       title: "Hutan Wisata Mata Kucing",
       category: "Nature Tourism",
-      image: "../assets/images/Museum.png",
+      image: hutanImg,
       comingSoon: true
     }
   ];

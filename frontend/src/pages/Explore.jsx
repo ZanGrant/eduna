@@ -7,7 +7,11 @@ const Explore = () => {
   return (
     <div>
       <Navbar />
-      <Explore1 />
+
+      <div className="explore-page">
+        <Explore1 />
+      </div>
+
       <Footer />
     </div>
   );

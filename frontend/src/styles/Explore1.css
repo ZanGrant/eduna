@@ -4,10 +4,21 @@
   box-sizing: border-box;
 }
 
-/* Search Bar */
+.explore-page {
+  padding-top: 130px; /* sesuaikan dengan tinggi navbar */
+  padding-left: 24px;
+  padding-right: 24px;
+  background-color: #f9fafb;
+  min-height: 100vh;
+}
+
+/* ====== Search Bar ====== */
 .search-container {
   position: relative;
   margin-bottom: 30px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .search-icon {
@@ -34,12 +45,16 @@
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-/* Filter Tabs */
+/* ====== Filter Tabs ====== */
 .filter-tabs {
   display: flex;
+  justify-content: center;
   gap: 12px;
   margin-bottom: 30px;
   flex-wrap: wrap;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .tab {
@@ -78,12 +93,16 @@
   border-color: #FF9500;
 }
 
-/* Destination Grid */
+/* ====== Destination Grid ====== */
 .destination-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 24px;
+  gap: 32px;
   margin-bottom: 60px;
+
+  max-width: 1080px; /* 🧩 Biar grid tidak nempel ke tepi */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .destination-card {
@@ -97,9 +116,10 @@
 
 .destination-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 25px 50px -12px rgba(255, 186, 8, 0.25);
 }
 
+/* ====== Card Image ====== */
 .card-image {
   position: relative;
   height: 200px;
@@ -117,6 +137,7 @@
   transform: scale(1.1);
 }
 
+/* ====== Badges ====== */
 .coming-soon-badge {
   position: absolute;
   top: 50%;
@@ -124,11 +145,12 @@
   transform: translate(-50%, -50%);
   background: #2563EB;
   color: white;
-  padding: 12px 32px;
+  padding: 10px 28px;
   border-radius: 8px;
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: 1px;
+  font-weight: 400; /* regular font */
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  white-space: nowrap; /* 🧩 biar tulisan tidak pecah dua baris */
 }
 
 .learning-badge {
@@ -143,15 +165,16 @@
   font-weight: 600;
 }
 
+/* ====== Card Content ====== */
 .card-content {
-  padding: 20px;
+  padding: 16px 20px 20px;
 }
 
 .card-title {
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 600;
   color: #1E293B;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .card-category {
@@ -159,10 +182,11 @@
   color: #64748B;
 }
 
-/* Responsive Design */
+/* ====== Responsive Design ====== */
 @media (max-width: 768px) {
   .destination-grid {
     grid-template-columns: 1fr;
+    padding: 0 1rem;
   }
 
   .filter-tabs {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../styles/Navbar.css";
 import logo from "../assets/Images/eduna-logo.png";
 
@@ -11,19 +11,48 @@ const Navbar = () => {
       </div>
 
       <ul className="nav-links">
-        <li><Link to="/" className="active">Home</Link></li>
-        <li><Link to="/explore">Explore</Link></li>
-        <li><Link to="/challenge">Challenge</Link></li>
-        <li><Link to="/community">Community</Link></li>
+        <li>
+          <NavLink 
+            to="/" 
+            className={({ isActive }) => (isActive ? "active" : "")}
+            end
+          >
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink 
+            to="/explore" 
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Explore
+          </NavLink>
+        </li>
+        <li>
+          <NavLink 
+            to="/challenge" 
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Challenge
+          </NavLink>
+        </li>
+        <li>
+          <NavLink 
+            to="/community" 
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Community
+          </NavLink>
+        </li>
       </ul>
 
       <div className="auth-buttons">
-        <Link to="/login">
+        <NavLink to="/login">
           <button className="login-btn">Login</button>
-        </Link>
-        <Link to="/register">
+        </NavLink>
+        <NavLink to="/register">
           <button className="signup-btn">Sign Up</button>
-        </Link>
+        </NavLink>
       </div>
     </nav>
   );
