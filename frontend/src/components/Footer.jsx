@@ -1,13 +1,12 @@
 import React from 'react';
 import "../styles/Footer.css";
 
-// Import logos dan icons
-import edunaLogo from '../assets/images/eduna-logo.png'; // Sesuaikan path
-import naturaNusaLogo from '../assets/images/natura-nusa-logo.png'; // Sesuaikan path
-import instagramIcon from '../assets/icons/Instagram.png'; // Sesuaikan path
-import facebookIcon from '../assets/icons/Facebook.png'; // Sesuaikan path
-import tiktokIcon from '../assets/icons/Tiktok.png'; // Sesuaikan path
-import linkedinIcon from '../assets/icons/Linkedin.png'; // Sesuaikan path
+import edunaLogo from '../assets/images/eduna-logo.png';
+import naturaNusaLogo from '../assets/images/natura-nusa-logo.png';
+import instagramIcon from '../assets/icons/Instagram.png';
+import facebookIcon from '../assets/icons/Facebook.png';
+import tiktokIcon from '../assets/icons/Tiktok.png';
+import linkedinIcon from '../assets/icons/Linkedin.png';
 
 const Footer = () => {
   return (

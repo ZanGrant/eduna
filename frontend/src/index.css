@@ -1,4 +1,7 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Abaikan garis kuning klo ada, itu anomalinya vscode */
 
 body {
   background-color: #f5f5f5;
