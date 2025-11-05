@@ -13,8 +13,7 @@ import ranohImg from "../assets/images/RanohIsland.png";
 import vietnamImg from "../assets/images/VietnamCamp.png"
 import hutanImg from "../assets/images/HutanWisataMataKucing.png"
 
-import "../styles/HeroSection.css";
-import "../styles/Recommendation.css";
+import "../styles/Homestyle.css";
 
 const Home = () => {
   const locations = [
@@ -52,44 +51,45 @@ const Home = () => {
     <div>
       <Navbar />
 
-      {/* HERO SECTION */}
-      <section className="hero-section">
-        <div className="hero-background">
-          <img src={heroLeft} alt="Left" className="hero-side left" />
-          <img src={heroRight} alt="Right" className="hero-side right" />
-          <img src={heroCenter} alt="Center" className="hero-main" />
+      {/* == HERO SECTION == */}
+      <section className="hero-section relative w-full pb-[120px] overflow-hidden font-satoshi">
+        <div className="hero-background relative flex justify-center items-center h-[860px]">
+          <img src={heroLeft} alt="Left" className="absolute top-[180px] left-[-5%] w-[55%] rounded-[20px] object-cover opacity-80" />
+          <img src={heroRight} alt="Right" className="absolute top-[180px] right-[-5%] w-[55%] rounded-[20px] object-cover opacity-80" />
+          <img src={heroCenter} alt="Center" className="relative z-20 w-[70%] rounded-[50px] object-cover" />
         </div>
 
-        <div className="search-card">
-          <h2>
-            <span className="purple">Find Your</span>{" "}
-            <span className="orange">Learning Journey</span>
+        <div className="search-card absolute left-1/2 bottom-[10px] transform -translate-x-1/2 bg-white shadow-lg rounded-[16px] p-[20px_32px] text-center w-[45%] z-30">
+          <h2 className="text-[1.8rem] mb-[15px] font-semibold bg-gradient-to-r from-[#246afe] via-[#9747ff] to-[#ffba08] bg-clip-text text-transparent text-left inline-block">
+            <span className="text-purple-500">Find Your</span>{" "}
+            <span className="text-orange-500">Learning Journey</span>
           </h2>
-          <div className="search-bar">
-            <select>
+          <div className="search-bar flex justify-center items-center gap-4">
+            <select className="px-2 py-2 border border-[#246afe] rounded text-sm">
               <option>Batam</option>
               <option>Tanjung Pinang</option>
               <option>Bintan</option>
             </select>
-            <input type="date" />
-            <input type="text" placeholder="Topic" />
-            <button>Find Now</button>
+            <input type="date" className="px-2 py-2 border border-[#246afe] rounded text-sm" />
+            <input type="text" placeholder="Topic" className="px-2 py-2 border border-[#246afe] rounded text-sm" />
+            <button className="bg-[#005cff] hover:bg-[#0040c1] text-white rounded px-4 py-2 font-medium transition">Find Now</button>
           </div>
         </div>
       </section>
 
-      {/* Gambar Banner Gamifikasi */}
-      <section className="flex justify-center items-center py-20 bg-gray-50">
-        <div className="promo-illu">
+      {/* == GAME BANNER == */}
+      <section className="flex justify-center items-center py-20 bg-gray-50 px-4 sm:px-6 lg:px-8">
+        <div className="promo-illu w-full flex justify-center">
           <img
             src={promoBanner}
             alt="Promo Banner Illustration"
-            className="w-full max-w-[600px] object-contain"
+            className="w-full max-w-[600px] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px] object-contain"
           />
         </div>
       </section>
 
-      {/* About Us */}
+
+      {/* == ABOUT US == */}
       <section className="flex justify-center items-center py-[100px] px-[200px] bg-[#f9f9f9] relative z-[5] max-lg:px-10 max-lg:py-20">
         <div className="flex items-center justify-between gap-[80px] flex-wrap max-w-[1100px] w-full max-lg:flex-col max-lg:gap-10">
 
@@ -126,48 +126,61 @@ const Home = () => {
         </div>
       </section>
 
-    <div className="recommendation-explore">
-      <div className="pattern-background"></div>
+      {/* == RECOMMENDATION EXPLORE == */}
+      <div className="recommendation-explore w-full py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div className="pattern-background absolute inset-0 z-0"></div>
 
-      <div className="container">
-        {/* Header */}
-        <h2 className="heading">
-          <span className="heading-gradient">Recommended Location to Explore!</span>
-        </h2>
+        <div className="container relative z-10 max-w-[1280px] mx-auto">
+          {/* Header */}
+          <h2 className="heading text-center font-bold mb-12 leading-[1.3] text-[1.875rem] md:text-2xl lg:text-[2.5rem]">
+            <span className="heading-gradient bg-gradient-to-r from-[#246afe] via-[#9747ff] to-[#ffba08] bg-clip-text text-transparent">
+              Recommended Location to Explore!
+            </span>
+          </h2>
 
-        {/* Cards Grid */}
-        <div className="cards-grid">
-          {locations.map((location) => (
-            <div key={location.id} className="location-card">
-              {/* Image Container */}
-              <div className="image-container">
-                <img
-                  src={location.image}
-                  alt={location.title}
-                  className="location-image"
-                  onError={(e) => {
-                    e.target.src = `https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&h=300&fit=crop`;
-                  }}
-                />
-                
-                {/* Coming Soon Badge */}
-                {location.comingSoon && (
-                  <div className="coming-soon-overlay">
-                    <span className="coming-soon-badge">COMING SOON</span>
-                  </div>
-                )}
+          {/* Cards Grid */}
+          <div className="cards-grid grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {locations.map((location) => (
+              <div
+                key={location.id}
+                className="location-card bg-white rounded-[1.5rem] overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all p-4"
+              >
+                {/* Image Container */}
+                <div className="image-container relative h-48 md:h-44 rounded-lg overflow-hidden mb-4">
+                  <img
+                    src={location.image}
+                    alt={location.title}
+                    className="location-image w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-110"
+                    onError={(e) => {
+                      e.target.src =
+                        "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&h=300&fit=crop";
+                    }}
+                  />
+
+                  {/* Coming Soon Badge */}
+                  {location.comingSoon && (
+                    <div className="coming-soon-overlay absolute inset-0 flex items-center justify-center bg-black/40 rounded-lg">
+                      <span className="coming-soon-badge bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg">
+                        COMING SOON
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Content */}
+                <div className="card-content px-2 pb-2">
+                  <h3 className="location-title text-lg font-bold text-gray-900 mb-1 leading-6">
+                    {location.title}
+                  </h3>
+                  <p className="location-category text-gray-600 text-sm font-medium">
+                    {location.category}
+                  </p>
+                </div>
               </div>
-
-              {/* Content */}
-              <div className="card-content">
-                <h3 className="location-title">{location.title}</h3>
-                <p className="location-category">{location.category}</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
-    </div>
       <Footer />
     </div>
   );
