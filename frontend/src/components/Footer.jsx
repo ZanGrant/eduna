@@ -12,7 +12,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
-        {/* Logo Section */}
+        {/* Section 1: Eduna Logo */}
         <div className="footer-logo-section">
           <img src={edunaLogo} alt="Eduna Logo" className="footer-logo" />
           <div className="footer-placeholder">
@@ -23,9 +23,13 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Navigation Menu */}
-        <div className="footer-nav-section">
+        {/* Section 2: Navigation Menu Title */}
+        <div className="footer-nav-title-section">
           <h3 className="footer-heading">Navigation Menu</h3>
+        </div>
+
+        {/* Section 3: Navigation Links */}
+        <div className="footer-nav-section">
           <nav className="footer-nav">
             <a href="#home" className="footer-link">Home</a>
             <a href="#explore" className="footer-link">Explore</a>
@@ -34,7 +38,7 @@ const Footer = () => {
           </nav>
         </div>
 
-        {/* Social Media */}
+        {/* Section 4: Social Media */}
         <div className="footer-social-section">
           <h3 className="footer-heading">Social Media</h3>
           <div className="social-icons">
@@ -87,3 +91,4 @@ const Footer = () => {
 };
 
 export default Footer;
+
