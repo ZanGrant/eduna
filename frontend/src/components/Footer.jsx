@@ -1,12 +1,12 @@
 import React from 'react';
 import "../styles/Footer.css";
 
-import edunaLogo from '../assets/images/eduna-logo.png';
+import edunaLogo from '../assets/images/eduna-logo-big.svg';
 import naturaNusaLogo from '../assets/images/natura-nusa-logo.png';
-import instagramIcon from '../assets/icons/Instagram.png';
-import facebookIcon from '../assets/icons/Facebook.png';
-import tiktokIcon from '../assets/icons/Tiktok.png';
-import linkedinIcon from '../assets/icons/Linkedin.png';
+import instagramIcon from '../assets/icons/Instagram.svg';
+import facebookIcon from '../assets/icons/Facebook.svg';
+import tiktokIcon from '../assets/icons/Tiktok.svg';
+import linkedinIcon from '../assets/icons/Linkedin.svg';
 
 const Footer = () => {
   return (
@@ -25,7 +25,7 @@ const Footer = () => {
 
         {/* Section 2: Navigation Menu Title */}
         <div className="footer-nav-title-section">
-          <h3 className="footer-heading">Navigation Menu</h3>
+          <h3 className="footer-heading">Navigation <br/> Menu</h3>
         </div>
 
         {/* Section 3: Navigation Links */}

@@ -20,11 +20,11 @@
 .footer-logo-section {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0px;
 }
 
 .footer-logo {
-  height: 3.5rem;
+  height: 90px;
   width: auto;
   object-fit: contain;
   align-self: flex-start;
@@ -52,6 +52,7 @@
 .footer-nav-title-section {
   display: flex;
   align-items: flex-start;
+  margin-left: 130px;
 }
 
 .footer-heading {

@@ -95,7 +95,7 @@ const Home = () => {
 
         <div className="search-card absolute left-1/2 bottom-[140px] transform -translate-x-1/2 bg-white shadow-lg rounded-[16px] p-[16px_15px] text-left w-[45%] z-30">
           <h2
-            className="text-[35px] mb-[10px] font-bold 
+            className="text-[35px] mb-[10px] font-semibold
             bg-[linear-gradient(90deg,#246afe_18%,#9747ff_37%,#ffba08_74%)] 
             bg-clip-text text-transparent text-left inline-block"
           >
@@ -151,20 +151,17 @@ const Home = () => {
 
        {/* == BAGIAN TEKS ABOUT US == */}
         <div className="flex-1 text-left max-lg:text-center">
-        <h2 className="text-[56px] font-bold mb-6 max-lg:text-[1.8rem] max-lg:mx-auto bg-[linear-gradient(90deg,#246afe_18%,#9747ff_37%,#ffba08_74%)] bg-clip-text text-transparent inline-block">
+        <h2 className="text-[56px] font-bold mb-1 max-lg:text-[1.8rem] max-lg:mx-auto bg-[linear-gradient(90deg,#246afe_18%,#9747ff_37%,#ffba08_74%)] bg-clip-text text-transparent inline-block">
              About Us
         </h2>
-         <p className="text-[20px] leading-[1.8] text-[#333] max-w-[580px] max-lg:max-w-full max-lg:mx-auto">
+         <p className="text-[20px] leading-[1.8] text-[#333] max-w-[580px] max-lg:max-w-full max-lg:mx-auto text-justify">
          <strong className="text-black font-semibold">
           Eduna (Education Nusa)
           </strong>{" "}
-          adalah platform digital pariwisata Kepulauan Riau yang memadukan layanan
-          praktis dan edukasi. Eduna memudahkan masyarakat dan wisatawan untuk{" "}
-          <span className="font-medium text-black">booking keberangkatan</span>,
-          sekaligus menghadirkan{" "}
-          <span className="font-medium text-black">learning module</span> dan{" "}
-          <span className="font-medium text-black">challenges</span> untuk mengenal
-          budaya, tempat, dan pengalaman lokal secara interaktif.
+          adalah platform digital pariwisata Kepulauan Riau yang
+          memadukan layanan praktis dan edukasi. Eduna memudahkan masyarakat dan wisatawan
+          untuk booking keberangkatan, sekaligus menghadirkan learning module dan challenges
+          untuk mengenal budaya, tempat, dan pengalaman lokal secara interaktif.
           </p>
           </div>
          </div>
