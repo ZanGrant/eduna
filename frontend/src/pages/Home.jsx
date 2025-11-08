@@ -95,7 +95,7 @@ const Home = () => {
 
         <div className="search-card absolute left-1/2 bottom-[140px] transform -translate-x-1/2 bg-white shadow-lg rounded-[16px] p-[16px_15px] text-left w-[45%] z-30">
           <h2
-            className="text-[35px] mb-[10px] font-semibold
+            className="text-[35px] mb-[10px] ml-[15px] font-semibold
             bg-[linear-gradient(90deg,#246afe_18%,#9747ff_37%,#ffba08_74%)] 
             bg-clip-text text-transparent text-left inline-block"
           >
@@ -200,7 +200,7 @@ const Home = () => {
                 </div>
 
                 <div className="card-content px-2 pb-2">
-                  <h3 className="location-title text-lg font-bold text-gray-900 mb-1 leading-6">
+                  <h3 className="location-title text-lg font-semibold text-gray-900 mb-1 leading-6">
                     {location.title}
                   </h3>
                   <p className="location-category text-gray-600 text-sm font-medium">
