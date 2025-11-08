@@ -1,11 +1,12 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Explore from "./pages/Explore";
 import Challenge from "./pages/Challenge";
 import Community from "./pages/Community";
+import AdminPanel from "./pages/admin/AdminPanel";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path="/explore" element={<Explore />} />
       <Route path="/challenge" element={<Challenge />} />
       <Route path="/community" element={<Community />} />
+      <Route path="/admin" element={<AdminPanel />} />
     </Routes>
   );
 }
