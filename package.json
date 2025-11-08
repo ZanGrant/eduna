@@ -1,0 +1,24 @@
+{
+  "name": "eduna",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"npm run start --prefix backend\" \"npm run start --prefix frontend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZanGrant/eduna.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZanGrant/eduna/issues"
+  },
+  "homepage": "https://github.com/ZanGrant/eduna#readme",
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
