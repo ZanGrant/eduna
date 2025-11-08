@@ -95,7 +95,7 @@ const Home = () => {
 
         <div className="search-card absolute left-1/2 bottom-[140px] transform -translate-x-1/2 bg-white shadow-lg rounded-[16px] p-[16px_15px] text-left w-[45%] z-30">
           <h2
-            className="text-[35px] mb-[10px] ml-[15px] font-semibold
+            className="text-[36px] mb-[10px] ml-[15px] font-[550]
             bg-[linear-gradient(90deg,#246afe_18%,#9747ff_37%,#ffba08_74%)] 
             bg-clip-text text-transparent text-left inline-block"
           >
@@ -151,7 +151,7 @@ const Home = () => {
 
        {/* == BAGIAN TEKS ABOUT US == */}
         <div className="flex-1 text-left max-lg:text-center">
-        <h2 className="text-[56px] font-bold mb-1 max-lg:text-[1.8rem] max-lg:mx-auto bg-[linear-gradient(90deg,#246afe_18%,#9747ff_37%,#ffba08_74%)] bg-clip-text text-transparent inline-block">
+        <h2 className="text-[52px] font-[580] mb-1 max-lg:text-[1.8rem] max-lg:mx-auto bg-[linear-gradient(90deg,#246afe_18%,#9747ff_37%,#ffba08_74%)] bg-clip-text text-transparent inline-block">
              About Us
         </h2>
          <p className="text-[20px] leading-[1.8] text-[#333] max-w-[580px] max-lg:max-w-full max-lg:mx-auto text-justify">
@@ -172,7 +172,7 @@ const Home = () => {
         <div className="pattern-background absolute inset-0 z-0"></div>
 
         <div className="container relative z-10 max-w-[1280px] mx-auto">
-          <h2 className="heading text-center font-bold mb-12 leading-[1.3] text-[1.875rem] md:text-2xl lg:text-[2.5rem]">
+          <h2 className="heading text-center font-[550] mb-12 leading-[1.3] text-[1.875rem] md:text-2xl lg:text-[2.5rem]">
             <span className="heading-gradient bg-gradient-to-r from-[#246afe] via-[#9747ff] to-[#ffba08] bg-clip-text text-transparent">
               Recommended Location to Explore!
             </span>
@@ -192,7 +192,7 @@ const Home = () => {
                   />
                   {location.comingSoon && (
                     <div className="coming-soon-overlay absolute inset-0 flex items-center justify-center bg-black/40 rounded-lg">
-                      <span className="coming-soon-badge bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg">
+                      <span className="coming-soon-badge bg-blue-600 text-white px-4 py-2 rounded-12 text-sm font-medium shadow-lg">
                         COMING SOON
                       </span>
                     </div>
@@ -200,10 +200,10 @@ const Home = () => {
                 </div>
 
                 <div className="card-content px-2 pb-2">
-                  <h3 className="location-title text-lg font-semibold text-gray-900 mb-1 leading-6">
+                  <h3 className="location-title text-lg font-[550] text-black-600 mb-1 leading-6">
                     {location.title}
                   </h3>
-                  <p className="location-category text-gray-600 text-sm font-medium">
+                  <p className="location-category text-white-500 text-sm font-medium">
                     {location.category}
                   </p>
                 </div>
