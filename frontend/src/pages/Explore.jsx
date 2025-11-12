@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { Search, Filter } from "lucide-react";
+import { Search, SlidersHorizontalIcon } from "lucide-react";
 
 import museumImg from "../assets/images/Museum.png";
 import ranohImg from "../assets/images/RanohIsland.png";
@@ -42,7 +42,7 @@ export default function Explore() {
       <div className="pt-[130px] px-6 min-h-screen bg-gray-50">
         {/* Search */}
         <div className="relative max-w-[800px] mx-auto mb-[30px]">
-          <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
+          <Search color="blue" className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
           <input
             type="text"
             placeholder="Search Location"
@@ -69,7 +69,7 @@ export default function Explore() {
           ))}
 
           <button className="flex items-center gap-2 px-7 py-3 border-2 rounded-lg font-medium bg-[#FFB800] text-white border-[#FFB800] hover:bg-[#FF9500] hover:border-[#FF9500] transition-all duration-300">
-            <Filter size={16} /> Kategori
+            <SlidersHorizontalIcon color="black" size={16} /> Kategori
           </button>
         </div>
 

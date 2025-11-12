@@ -15,6 +15,9 @@ import hutanImg from "../assets/images/HutanWisataMataKucing.png";
 
 import "../styles/Homestyle.css";
 
+import { MapPin, Calendar, LightbulbIcon } from "lucide-react";
+
+
 const Home = () => {
   const [images, setImages] = useState([heroLeft, heroCenter, heroRight]);
   const [fade, setFade] = useState(false);
@@ -70,58 +73,76 @@ const Home = () => {
       <Navbar />
 
       {/* == HERO SECTION == */}
-      <section className="hero-section relative w-full pb-[90px] overflow-hidden font-satoshi bg-white">
-        <div
-          className={`hero-background relative flex justify-center items-center h-[860px] transition-opacity duration-500 ${
-            fade ? "opacity-0" : "opacity-100"
-          }`}
-        >
-          <img
-            src={images[0]}
-            alt="Left"
-            className="absolute top-[180px] left-[-5%] w-[55%] rounded-[20px] object-cover opacity-80"
-          />
-          <img
-            src={images[2]}
-            alt="Right"
-            className="absolute top-[180px] right-[-5%] w-[55%] rounded-[20px] object-cover opacity-80"
-          />
-          <img
-            src={images[1]}
-            alt="Center"
-            className="relative z-20 w-[70%] rounded-[50px] object-cover"
-          />
-        </div>
+<section className="hero-section relative w-full pb-[90px] overflow-hidden font-satoshi bg-white">
+  <div
+    className={`hero-background relative flex justify-center items-center h-[860px] transition-opacity duration-500 ${
+      fade ? "opacity-0" : "opacity-100"
+    }`}
+  >
+    <img
+      src={images[0]}
+      alt="Left"
+      className="absolute top-[180px] left-[-5%] w-[55%] rounded-[20px] object-cover opacity-80"
+    />
+    <img
+      src={images[2]}
+      alt="Right"
+      className="absolute top-[180px] right-[-5%] w-[55%] rounded-[20px] object-cover opacity-80"
+    />
+    <img
+      src={images[1]}
+      alt="Center"
+      className="relative z-20 w-[70%] rounded-[50px] object-cover"
+    />
+  </div>
 
-        <div className="search-card absolute left-1/2 bottom-[140px] transform -translate-x-1/2 bg-white shadow-lg rounded-[16px] p-[16px_15px] text-left w-[45%] z-30">
-          <h2
-            className="text-[36px] mb-[10px] ml-[15px] font-[550]
-            bg-[linear-gradient(90deg,#246afe_18%,#9747ff_37%,#ffba08_74%)] 
-            bg-clip-text text-transparent text-left inline-block"
-          >
-            Find Your Learning Journey
-          </h2>
-          <div className="search-bar flex justify-center items-center gap-4">
-            <select className="px-2 py-2 border border-[#246afe] rounded text-sm">
-              <option>Batam</option>
-              <option>Tanjung Pinang</option>
-              <option>Bintan</option>
-            </select>
-            <input
-              type="date"
-              className="px-2 py-2 border border-[#246afe] rounded text-sm"
-            />
-            <input
-              type="text"
-              placeholder="Topic"
-              className="px-2 py-2 border border-[#246afe] rounded text-sm"
-            />
-            <button className="bg-[#005cff] hover:bg-[#0040c1] text-white rounded px-4 py-2 font-medium transition">
-              Find Now
-            </button>
-          </div>
-        </div>
-      </section>
+  <div className="search-card absolute left-1/2 bottom-[150px] transform -translate-x-1/2 bg-white shadow-lg rounded-[16px] p-[16px_15px] text-left w-[45%] z-30">
+    <h2
+      className="text-[36px] mb-[4px] ml-[4px] font-[550]
+      bg-[linear-gradient(90deg,#246afe_18%,#9747ff_37%,#ffba08_74%)] 
+      bg-clip-text text-transparent text-left inline-block"
+    >
+      Find Your Learning Journey
+    </h2>
+
+    <div className="search-bar flex justify-center items-center gap-4">
+      {/* Lokasi */}
+      <div className="flex items-center gap-2 border border-[#246afe] rounded px-3 py-2">
+        <MapPin className="text-[#878282] w-4 h-4" />
+        <select className="text-sm text-[#878282] font-medium focus:outline-none bg-transparent">
+          <option>Batam</option>
+          <option>Tanjung Pinang</option>
+          <option>Bintan</option>
+        </select>
+      </div>
+
+      {/* Tanggal */}
+      <div className="flex items-center gap-2 border border-[#246afe] rounded px-2 py-1.5">
+        <Calendar className="text-[#878282] w-4 h-4" />
+        <input
+          type="date"
+          className="text-sm text-[#878282] font-medium border-none focus:outline-none bg-transparent"
+        />
+      </div>
+
+      {/* Topik */}
+      <div className="flex items-center gap-2 border border-[#246afe] rounded px-3 py-2">
+        <LightbulbIcon className="text-[#878282] w-4 h-4" />
+        <select className="text-sm text-[#878282] font-medium focus:outline-none bg-transparent">
+          <option>Culture</option>
+          <option>Nature</option>
+          <option>History</option>
+          <option>Technology</option>
+        </select>
+      </div>
+
+      <button className="bg-[#005cff] hover:bg-[#0040c1] text-white rounded px-3 py-1.5 font-medium transition">
+        Find Now
+      </button>
+    </div>
+  </div>
+</section>
+
 
       {/* == GAME BANNER == */}
       <section className="flex justify-center items-center py-0 bg-white px-4 sm:px-6 lg:px-8 relative -mt-10">
