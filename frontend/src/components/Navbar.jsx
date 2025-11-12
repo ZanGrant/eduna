@@ -21,12 +21,17 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink 
-            to="/explore" 
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            Explore
-          </NavLink>
+          <NavLink
+        to="/explore"
+        className={({ isActive, location }) =>
+         window.location.pathname.startsWith("/explore") || window.location.pathname.startsWith("/museum-raja-ali-haji")
+          ? "active"
+          : ""
+        }
+        >
+           Explore
+        </NavLink>
+
         </li>
         <li>
           <NavLink 

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ Tambahkan ini
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Search, SlidersHorizontalIcon } from "lucide-react";
@@ -15,9 +16,18 @@ import megawisataImg from "../assets/images/MegaWisataOcarina.png";
 export default function Explore() {
   const [activeTab, setActiveTab] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate(); // ✅ Hook untuk pindah halaman
 
   const destinations = [
-    { id: 1, name: "Museum Raja Ali Haji Batam", category: "Sejarah", image: museumImg, status: "available", badge: "Learning Available" },
+    {
+      id: 1,
+      name: "Museum Raja Ali Haji Batam",
+      category: "Sejarah",
+      image: museumImg,
+      status: "available",
+      badge: "Learning Available",
+      path: "/museum-raja-ali-haji", // ✅ Tambahkan path
+    },
     { id: 2, name: "Kampung Vietnam", category: "Sejarah", image: vietnamImg, status: "coming-soon" },
     { id: 3, name: "Ranoh Island Resort", category: "Resort - Pantai", image: ranohImg, status: "coming-soon" },
     { id: 4, name: "Waterpark Top 100 Batu Aji", category: "Waterpark", image: waterparkImg, status: "coming-soon" },
@@ -42,7 +52,11 @@ export default function Explore() {
       <div className="pt-[130px] px-6 min-h-screen bg-gray-50">
         {/* Search */}
         <div className="relative max-w-[800px] mx-auto mb-[30px]">
-          <Search color="blue" className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
+          <Search
+            color="blue"
+            className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"
+            size={20}
+          />
           <input
             type="text"
             placeholder="Search Location"
@@ -79,14 +93,21 @@ export default function Explore() {
             filteredDestinations.map((d) => (
               <div
                 key={d.id}
+                onClick={() => d.path && navigate(d.path)} // ✅ klik card → navigate ke halaman detail
                 className="bg-white rounded-2xl overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.08)] transition-all duration-300 cursor-pointer hover:-translate-y-2 hover:shadow-[0_25px_50px_-12px_rgba(255,186,8,0.25)]"
               >
                 {/* Image */}
                 <div className="relative h-[200px] overflow-hidden">
-                  <img src={d.image} alt={d.name} className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" />
+                  <img
+                    src={d.image}
+                    alt={d.name}
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                  />
                   {d.status === "coming-soon" && (
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="bg-blue-600 text-white px-7 py-2.5 rounded-lg text-[16px] tracking-wide">COMING SOON</div>
+                      <div className="bg-blue-600 text-white px-7 py-2.5 rounded-lg text-[16px] tracking-wide">
+                        COMING SOON
+                      </div>
                     </div>
                   )}
                   {d.badge && (
@@ -98,7 +119,9 @@ export default function Explore() {
 
                 {/* Content */}
                 <div className="p-5">
-                  <h3 className="text-[18px] font-semibold text-slate-800 mb-1">{d.name}</h3>
+                  <h3 className="text-[18px] font-semibold text-slate-800 mb-1">
+                    {d.name}
+                  </h3>
                   <p className="text-[14px] text-slate-500">{d.category}</p>
                 </div>
               </div>

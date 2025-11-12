@@ -7,6 +7,7 @@ import Explore from "./pages/Explore";
 import Challenge from "./pages/Challenge";
 import Community from "./pages/Community";
 import AdminPanel from "./pages/admin/AdminPanel";
+import ExploreMuseumRajaAliHaji from "./pages/ExploreMuseumRajaAliHaji";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path="/challenge" element={<Challenge />} />
       <Route path="/community" element={<Community />} />
       <Route path="/admin" element={<AdminPanel />} />
+      <Route path="/museum-raja-ali-haji" element={<ExploreMuseumRajaAliHaji />} />
     </Routes>
   );
 }
