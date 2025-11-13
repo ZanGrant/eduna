@@ -17,7 +17,7 @@ const modules = [
   { id: 4, title: "Sejarah Terbentuknya Kota Batam", locked: true, completed: false, path: "/museum-raja-ali-haji/module-4" },
 ];
 
-// Konten Detail Modul 1 (dipertahankan)
+// Konten Detail Modul 1 
 const moduleContent = {
   title: "Mengenal Museum Raja Ali Haji",
   subtitle: "Kenalan dulu yuk dengan Museum Raja Ali Haji",

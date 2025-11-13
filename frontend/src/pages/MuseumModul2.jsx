@@ -18,7 +18,7 @@ const modules = [
   { id: 4, title: "Sejarah Terbentuknya Kota Batam", locked: true, completed: false, path: "/museum-raja-ali-haji/module-4" },
 ];
 
-// Konten Detail Modul 2 (Fokus pada Kepri, Museum & Nilai Abadi)
+// Konten Detail Modul 2
 const moduleContent = {
   title: "Pesona Sejarah & Budaya Kepulauan Riau",
   subtitle: "Gimana sih sejarah dan apa aja sih budaya di Kepulauan Riau",
