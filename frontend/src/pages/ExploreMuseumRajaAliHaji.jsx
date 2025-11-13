@@ -26,10 +26,10 @@ export default function ExploreMuseumRajaAliHaji() {
   ];
 
   const modules = [
-    { id: 1, title: "Mengenal Museum Raja Ali Haji", progress: 80 },
-    { id: 2, title: "Pesona Sejarah & Budaya Kepulauan Riau", progress: 60 },
-    { id: 3, title: "Petualangan Kuliner dan Kerajinan Khas Kepri", progress: 80 },
-    { id: 4, title: "Sejarah Terbentuknya Kota Batam", progress: 30 },
+    { id: 1, title: "Mengenal Museum Raja Ali Haji", progress: 0 },
+    { id: 2, title: "Pesona Sejarah & Budaya Kepulauan Riau", progress: 0 },
+    { id: 3, title: "Petualangan Kuliner dan Kerajinan Khas Kepri", progress: 0 },
+    { id: 4, title: "Sejarah Terbentuknya Kota Batam", progress: 0 },
   ];
 
   return (
