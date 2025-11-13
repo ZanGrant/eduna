@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import { ArrowLeft, Lock, CheckCircle, ChevronRight } from "lucide-react";
 import module1Image from "../assets/images/MuseumModul1.svg"; 
 
-// Data Navigasi Modul (dipertahankan)
+// Data Navigasi Modul 
 const modules = [
   // Module 1: Current and Completed
   { id: 1, title: "Mengenal Museum Raja Ali Haji", locked: false, completed: true, path: "/museum-raja-ali-haji/module-1" },
@@ -25,7 +25,7 @@ const moduleContent = {
   sections: [
     {
       heading: "Sekilas tentang Raja Ali Haji",
-      content: `Raja Ali Haji adalah seorang tokoh besar yang lahir pada tahun 1808 dan wafat sekitar tahun 1873. Beliau dikenal sebagai ulama, sastrawan, dan sejarawan terkemuka dari Kesultanan Riau-Lingga. Kontribusinya sangat besar bagi pengembangan kebudayaan Melayu.`,
+      content: `Raja Ali Haji adalah seorang tokoh besar yang lahir pada tahun 1808 dan wafat sekitar tahun 1873. Beliau dikenal sebagai ulama, sastrawan, dan sejarawan terkemuka dari Kesultanan Riau-Lingga. Kontribusinya sangat besar, terutama dalam bidang bahasa dan sastra.`,
       list: [
         {
           key: "Penerus Bahasa:",
