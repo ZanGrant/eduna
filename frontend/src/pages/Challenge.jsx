@@ -93,6 +93,81 @@ export default function Challenge() {
         </div>
       </section>
 
+      {/* === REWARDS SECTION === */}
+<section className="max-w-[1200px] mx-auto px-6 mt-0">
+  <h2 className="text-[40px] font-[550] text-left mb-4">
+    <span className="inline-block bg-gradient-to-r from-[#246afe] via-[#9747ff] to-[#ffba08] bg-clip-text text-transparent">
+      Rewards
+    </span>
+  </h2>
+
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    
+    {/* CARD 1 */}
+    <div className="bg-white rounded-2xl shadow-md border border-[#e6e6e6] p-6 flex flex-col justify-between">
+      <div>
+        <h3 className="text-lg font-semibold text-slate-800">
+          Voucher 10% Tiket Masuk Wisata
+        </h3>
+        <p className="text-sm text-slate-600 mt-2">Berlaku untuk user baru</p>
+
+        {/* GARIS PUTUS–PUTUS */}
+        <div className="border-t border-dashed border-slate-300 my-4"></div>
+      </div>
+
+      <div className="flex items-center justify-between">
+        <span className="text-[#246afe] font-medium">500 Points</span>
+        <button className="px-4 py-2 rounded-xl border border-[#246afe] text-[#246afe] hover:bg-[#246afe] hover:text-white transition-all">
+          Redeem
+        </button>
+      </div>
+    </div>
+
+    {/* CARD 2 */}
+    <div className="bg-white rounded-2xl shadow-md border border-[#e6e6e6] p-6 flex flex-col justify-between">
+      <div>
+        <h3 className="text-lg font-semibold text-slate-800">
+          Voucher 10% Tiket Bus Wisata
+        </h3>
+        <p className="text-sm text-slate-600 mt-2">Berlaku hingga Januari 2026</p>
+
+        {/* GARIS PUTUS–PUTUS */}
+        <div className="border-t border-dashed border-slate-300 my-4"></div>
+      </div>
+
+      <div className="flex items-center justify-between">
+        <span className="text-[#246afe] font-medium">500 Points</span>
+        <button className="px-4 py-2 rounded-xl border border-[#246afe] text-[#246afe] hover:bg-[#246afe] hover:text-white transition-all">
+          Redeem
+        </button>
+      </div>
+    </div>
+
+    {/* CARD 3 */}
+    <div className="bg-white rounded-2xl shadow-md border border-[#e6e6e6] p-6 flex flex-col justify-between">
+      <div>
+        <h3 className="text-lg font-semibold text-slate-800">
+          Voucher 5% Wisata Kuliner
+        </h3>
+        <p className="text-sm text-slate-600 mt-2">Berlaku hingga Desember 2025</p>
+
+        {/* GARIS PUTUS–PUTUS */}
+        <div className="border-t border-dashed border-slate-300 my-4"></div>
+      </div>
+
+      <div className="flex items-center justify-between">
+        <span className="text-[#246afe] font-medium">500 Points</span>
+        <button className="px-4 py-2 rounded-xl border border-[#246afe] text-[#246afe] hover:bg-[#246afe] hover:text-white transition-all">
+          Redeem
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+      
       {/* === Today's Challenge Section === */}
       <section className="w-full max-w-[1200px] mx-auto px-10 pt-4 pb-20">
   <h2 className="text-[40px] font-[550] text-center mb-10">
