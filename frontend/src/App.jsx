@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -14,6 +15,8 @@ import MuseumModule2 from "./pages/MuseumModul2";
 import MuseumModule3 from "./pages/MuseumModul3";
 import MuseumModule4 from "./pages/MuseumModul4";
 
+import QuizMuseumRajaAliHaji from "./pages/QuizMuseumRajaAliHaji";
+
 function App() {
   return (
     <Routes>
@@ -25,14 +28,14 @@ function App() {
       <Route path="/community" element={<Community />} />
       <Route path="/admin" element={<AdminPanel />} />
 
-      {/* === Halaman utama Explore Museum === */}
       <Route path="/museum-raja-ali-haji" element={<ExploreMuseumRajaAliHaji />} />
 
-      {/* === Module Pages === */}
       <Route path="/museum-raja-ali-haji/module-1" element={<MuseumModule1 />} />
       <Route path="/museum-raja-ali-haji/module-2" element={<MuseumModule2 />} />
       <Route path="/museum-raja-ali-haji/module-3" element={<MuseumModule3 />} />
       <Route path="/museum-raja-ali-haji/module-4" element={<MuseumModule4 />} />
+
+      <Route path="/quiz-museum-raja-ali-haji/utama" element={<QuizMuseumRajaAliHaji />} />
     </Routes>
   );
 }

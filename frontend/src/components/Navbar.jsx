@@ -37,6 +37,7 @@ const Navbar = () => {
           <NavLink 
             to="/challenge" 
             className={({ isActive }) => (isActive ? "active" : "")}
+             
           >
             Challenge
           </NavLink>
