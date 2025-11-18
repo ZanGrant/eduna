@@ -1,16 +1,46 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { Share2, PencilLine, MapPin, Clock, Ticket } from "lucide-react";
+import { Share2, PencilLine, MapPin, Clock, Ticket, Mail, Link } from "lucide-react";
 import museumImg from "../assets/images/museum-community.svg";
 import userImg from "../assets/icons/Icon Leaderboard 3.svg";
 
+// Asumsi Anda memiliki fungsi untuk menavigasi (misalnya: menggunakan React Router)
+const navigateToReviewPage = () => {
+  console.log("Navigating to /submit-review...");
+  alert("Simulasi: Pindah ke Halaman Submit Review");
+};
+
 const ReviewMuseum = () => {
+  const [isShareDropdownOpen, setIsShareDropdownOpen] = useState(false);
+
+  const overviewRef = useRef(null);
+  const detailsRef = useRef(null);
+  const reviewRef = useRef(null);
+
+  // 🔴 PERBAIKAN SCROLL: Menggunakan JavaScript untuk mengatur offset
+  const scrollToSection = (ref) => {
+    if (ref.current) {
+      // ⚠️ Tentukan tinggi Navbar Anda di sini (misalnya, 100 piksel)
+      const NAVBAR_HEIGHT = 100; 
+      
+      const elementPosition = ref.current.getBoundingClientRect().top;
+      
+      // Hitung posisi scroll: Posisi elemen + Scroll saat ini - Tinggi Navbar
+      const offsetPosition = elementPosition + window.pageYOffset - NAVBAR_HEIGHT;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <>
       <Navbar />
 
-      <div className="max-w-[1100px] mx-auto px-6 pt-[120px] pb-20">
+      <div className="max-w-[1100px] mx-auto px-6 pt-[120px] pb-20max-w-[1100px] mx-auto px-6 pt-[120px] pb-20">
         {/* ====== TITLE & TOP INFO ====== */}
         <div className="flex justify-between items-start mb-6">
           <div>
@@ -23,11 +53,44 @@ const ReviewMuseum = () => {
             </div>
           </div>
 
-          <div className="flex gap-10 text-gray-600 text-sm">
-            <button className="hover:text-black flex items-center gap-1">
-              <Share2 size={24} /> Share
-            </button>
-            <button className="hover:text-black flex items-center gap-1">
+          <div className="flex gap-4 text-gray-600 text-sm">
+            {/* 1. IMPLEMENTASI DROPDOWN SHARE */}
+            <div className="relative">
+              <button
+                className="hover:text-black flex items-center gap-1 p-2 rounded-lg"
+                onClick={() => setIsShareDropdownOpen(!isShareDropdownOpen)}
+              >
+                <Share2 size={24} /> Share
+              </button>
+              
+              {isShareDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-40 bg-white border rounded-lg shadow-lg z-10">
+                  <button className="flex items-center gap-2 w-full px-4 py-2 text-left hover:bg-gray-100"
+                    onClick={() => {
+                        window.location.href = `mailto:?subject=Cek Museum Ini&body=Lihat Museum Raja Ali Haji: ${window.location.href}`;
+                        setIsShareDropdownOpen(false);
+                    }}
+                  >
+                    <Mail size={18} /> Email
+                  </button>
+                  <button className="flex items-center gap-2 w-full px-4 py-2 text-left hover:bg-gray-100"
+                    onClick={() => {
+                        navigator.clipboard.writeText(window.location.href);
+                        setIsShareDropdownOpen(false);
+                        alert("Link berhasil disalin!");
+                    }}
+                  >
+                    <Link size={18} /> Copy Link
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* 2. IMPLEMENTASI NAVIGASI REVIEW */}
+            <button
+              className="hover:text-black flex items-center gap-1 p-2 rounded-lg"
+              onClick={navigateToReviewPage}
+            >
               <PencilLine size={24} /> Review
             </button>
           </div>
@@ -41,16 +104,31 @@ const ReviewMuseum = () => {
         />
 
         {/* ====== NAV TABS ====== */}
-        <div className="flex gap-8 border-b mb-10 text-gray-600 text-sm">
-          <button className="pb-3 border-b-2 border-black text-black font-medium">
+        {/* 3. IMPLEMENTASI SCROLL UNTUK NAV TABS */}
+        <div className="flex gap-8 border-b mb-10 text-gray-600 text-sm sticky top-0 z-10">
+          <button
+            className="pb-3 border-b-2 border-black text-black font-medium"
+            onClick={() => scrollToSection(overviewRef)}
+          >
             Overview
           </button>
-          <button className="pb-3 hover:text-black">Details</button>
-          <button className="pb-3 hover:text-black">Review</button>
+          <button
+            className="pb-3 hover:text-black"
+            onClick={() => scrollToSection(detailsRef)}
+          >
+            Details
+          </button>
+          <button
+            className="pb-3 hover:text-black"
+            onClick={() => scrollToSection(reviewRef)}
+          >
+            Review
+          </button>
         </div>
 
         {/* ====== OVERVIEW SECTION ====== */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-16">
+        {/* 3. TAMBAHKAN REF KE SECTION */}
+        <div ref={overviewRef} className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-16">
           <div>
             <h2 className="text-xl font-semibold mb-4">Overview</h2>
 
@@ -80,7 +158,8 @@ const ReviewMuseum = () => {
         </div>
 
         {/* ====== DETAILS SECTION ====== */}
-        <div className="mb-16">
+        {/* 3. TAMBAHKAN REF KE SECTION */}
+        <div ref={detailsRef} className="mb-16">
           <h2 className="text-2xl font-semibold mb-6">Details</h2>
 
           <div className="text-gray-700 space-y-4 mb-6">
@@ -109,7 +188,8 @@ const ReviewMuseum = () => {
         </div>
 
         {/* ====== REVIEW SECTION ====== */}
-        <div className="mb-8">
+        {/* 3. TAMBAHKAN REF KE SECTION */}
+        <div ref={reviewRef} className="mb-8 pt-10 -mt-10">
           <h2 className="text-2xl font-semibold mb-2">Review</h2>
 
           <div className="flex items-center gap-3 mb-6">
