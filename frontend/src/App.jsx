@@ -16,6 +16,7 @@ import MuseumModule3 from "./pages/MuseumModul3";
 import MuseumModule4 from "./pages/MuseumModul4";
 
 import QuizMuseumRajaAliHaji from "./pages/QuizMuseumRajaAliHaji";
+import ReviewMuseum from "./pages/ReviewMuseum";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
       <Route path="/museum-raja-ali-haji/module-4" element={<MuseumModule4 />} />
 
       <Route path="/quiz-museum-raja-ali-haji/utama" element={<QuizMuseumRajaAliHaji />} />
+      <Route path="/review-museum-raja-ali-haji" element={<ReviewMuseum />} />
     </Routes>
   );
 }

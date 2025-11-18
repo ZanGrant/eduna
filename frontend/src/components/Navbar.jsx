@@ -44,8 +44,12 @@ const Navbar = () => {
         </li>
         <li>
           <NavLink 
-            to="/community" 
-            className={({ isActive }) => (isActive ? "active" : "")}
+            to="/community"
+        className={({ isActive, location }) =>
+         window.location.pathname.startsWith("/community") || window.location.pathname.startsWith("/review-museum-raja-ali-haji")
+          ? "active"
+          : ""
+        }
           >
             Community
           </NavLink>
