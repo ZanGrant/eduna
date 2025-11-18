@@ -5,6 +5,15 @@ import logo from "../assets/Images/eduna-logo.png";
 import profileIcon from "../assets/icons/Icon Leaderboard 1.svg";
 import heroImage from "../assets/images/RajaAliHaji.svg";
 
+// 🖼️ Import avatar dan badge (pastikan nama file sesuai punyamu)
+import IrfanIcon from "../assets/icons/Icon Leaderboard 1.svg";
+import MarvelIcon from "../assets/icons/Icon Leaderboard 2.svg";
+import ImamIcon from "../assets/icons/Icon Leaderboard 3.svg";
+
+import BadgeGold from "../assets/icons/Badge 1.svg";
+import BadgeSilver from "../assets/icons/Badge 2.svg";
+import BadgeBronze from "../assets/icons/Badge 3.svg";
+
 export default function QuizMuseumRajaAliHaji() {
   const [start, setStart] = useState(false);
   const [countdown, setCountdown] = useState(null);
@@ -99,29 +108,12 @@ export default function QuizMuseumRajaAliHaji() {
 
   /* ==================== LEADERBOARD DUMMY DATA ==================== */
   // Data ini diperlukan agar Leaderboard tidak kosong
-  const leaderboard = [
-    {
-      id: 1,
-      name: "Irfan",
-      score: 950,
-      avatar: "/assets/dummy/1.png", 
-      badge: "/assets/icons/badge-gold.png",
-    },
-    {
-      id: 2,
-      name: "Marvel",
-      score: 940,
-      avatar: "/assets/dummy/2.png",
-      badge: "/assets/icons/badge-silver.png",
-    },
-    {
-      id: 3,
-      name: "Imam",
-      score: 930,
-      avatar: "/assets/dummy/3.png",
-      badge: "/assets/icons/badge-bronze.png",
-    },
-  ];
+  // Setiap user punya avatar + badge sendiri
+    const leaderboard = [
+      { id: 1, name: "Irfan", score: 1000, avatar: IrfanIcon, badge: BadgeGold },
+      { id: 2, name: "Marvel", score: 900, avatar: MarvelIcon, badge: BadgeSilver },
+      { id: 3, name: "Imam", score: 800, avatar: ImamIcon, badge: BadgeBronze },
+    ];
   /* ================================================================ */
 
   /* ==================== COUNTDOWN ==================== */
