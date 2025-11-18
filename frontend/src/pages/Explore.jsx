@@ -49,7 +49,7 @@ export default function Explore() {
       <Navbar />
 
       {/* ===== Explore Section ===== */}
-      <div className="pt-[130px] px-6 min-h-screen bg-gray-50">
+      <div className="pt-[130px] px-6 min-h-screen bg-gray-50 pb-2">
         {/* Search */}
         <div className="relative max-w-[800px] mx-auto mb-[30px]">
           <Search
