@@ -1,9 +1,9 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { Share2, PencilLine } from "lucide-react";
+import { Share2, PencilLine, MapPin, Clock, Ticket } from "lucide-react";
 import museumImg from "../assets/images/museum-community.svg";
-import userImg from "../assets/icons/Icon Leaderboard 1.svg";
+import userImg from "../assets/icons/Icon Leaderboard 3.svg";
 
 const ReviewMuseum = () => {
   return (
@@ -11,7 +11,6 @@ const ReviewMuseum = () => {
       <Navbar />
 
       <div className="max-w-[1100px] mx-auto px-6 pt-[120px] pb-20">
-
         {/* ====== TITLE & TOP INFO ====== */}
         <div className="flex justify-between items-start mb-6">
           <div>
@@ -24,7 +23,7 @@ const ReviewMuseum = () => {
             </div>
           </div>
 
-          <div className="flex gap-12 text-black-600 text-sm">
+          <div className="flex gap-10 text-gray-600 text-sm">
             <button className="hover:text-black flex items-center gap-1">
               <Share2 size={24} /> Share
             </button>
@@ -84,15 +83,28 @@ const ReviewMuseum = () => {
         <div className="mb-16">
           <h2 className="text-2xl font-semibold mb-6">Details</h2>
 
-          <div className="text-gray-700 space-y-2 mb-6">
-            <p>📍 Jl. Engku Putri Utara No.1, Tlk. Tering, Kec. Batam Kota, Kepulauan Riau</p>
-            <p>🕒 Setiap Hari (Selasa – Minggu) — 09.00–16.00</p>
+          <div className="text-gray-700 space-y-4 mb-6">
+            <p className="flex items-center gap-3">
+              <MapPin size={18} className="text-blue-600" />
+              Jl. Engku Putri Utara No.1, Tlk. Tering, Kec. Batam Kota, Kepulauan Riau
+            </p>
+
+            <p className="flex items-center gap-3">
+              <Clock size={18} className="text-blue-600" />
+              Setiap Hari (Selasa – Minggu) — 09.00–16.00
+            </p>
           </div>
 
-          <div className="text-gray-700 space-y-1">
-            <p>Pelajar: Rp 5.000</p>
-            <p>Umum: Rp 10.000</p>
-            <p>WNA: Rp 15.000</p>
+          {/* PRICE LIST (FIXED, SINGLE ICON) */}
+          <div className="text-gray-700 space-y-3">
+            <div className="flex items-start gap-3">
+              <Ticket size={18} className="text-blue-600 mt-1" />
+              <div className="space-y-1">
+                <p>Pelajar: Rp 5.000</p>
+                <p>Umum: Rp 10.000</p>
+                <p>WNA: Rp 15.000</p>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -148,10 +160,7 @@ const ReviewMuseum = () => {
                   I came here 30 years ago with the memory of a beautiful garden... what was my disappointment.
                 </p>
 
-                <img
-                  src={museumImg}
-                  className="w-full max-w-[350px] rounded-xl"
-                />
+                <img src={museumImg} className="w-full max-w-[350px] rounded-xl" />
               </div>
             ))}
           </div>
