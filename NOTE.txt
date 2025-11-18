@@ -5,7 +5,8 @@ Jalankan npm install di Terminal, tempat untuk npm install:
 - folder frontend
 
 ==== MYSQL ====
-https://dev.mysql.com/downloads/installer
-MySQL Installer 8.0.44 yg sekitar 2mb
-Legacy auth
-
+PASTIKAN MYSQL SUDAH TERINSTALL
+Di Terminal, jalanin ini:
+cd Backend
+node setupDB.js (untuk masukin data dummy)
+node server.js (untuk mastiin server backend masuk dgn dbnya terhubung)
