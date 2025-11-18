@@ -1,5 +1,8 @@
-Jalankan npm install berdasarkan package.json
-sebelum npm install, hapus dulu package-lock.json
+Sebelum npm install, hapus dulu package-lock.json
+Jalankan npm install di Terminal, tempat untuk npm install:
+- folder dasar (Eduna)
+- folder backend
+- folder frontend
 
 ==== MYSQL ====
 https://dev.mysql.com/downloads/installer
