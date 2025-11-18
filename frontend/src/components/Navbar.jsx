@@ -46,7 +46,7 @@ const Navbar = () => {
           <NavLink 
             to="/community"
         className={({ isActive, location }) =>
-         window.location.pathname.startsWith("/community") || window.location.pathname.startsWith("/review-museum-raja-ali-haji")
+         window.location.pathname.startsWith("/community") || window.location.pathname.startsWith("/review-museum-raja-ali-haji") || window.location.pathname.startsWith("/submit-review")
           ? "active"
           : ""
         }
