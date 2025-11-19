@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 import museumImage from "../assets/images/museum-community.svg";
 import logo from "../assets/Images/eduna-logo.png";
 import profileIcon from "../assets/icons/Icon Leaderboard 1.svg";
 import heroImage from "../assets/images/RajaAliHaji.svg";
 
-// 🖼️ Import avatar dan badge (pastikan nama file sesuai punyamu)
+// Avatar & Badge
 import IrfanIcon from "../assets/icons/Icon Leaderboard 1.svg";
 import MarvelIcon from "../assets/icons/Icon Leaderboard 2.svg";
 import ImamIcon from "../assets/icons/Icon Leaderboard 3.svg";
@@ -15,6 +16,8 @@ import BadgeSilver from "../assets/icons/Badge 2.svg";
 import BadgeBronze from "../assets/icons/Badge 3.svg";
 
 export default function QuizMuseumRajaAliHaji() {
+  const navigate = useNavigate();
+
   const [start, setStart] = useState(false);
   const [countdown, setCountdown] = useState(null);
   const [showQuiz, setShowQuiz] = useState(false);
@@ -34,12 +37,10 @@ export default function QuizMuseumRajaAliHaji() {
   const questions = [
     {
       img: heroImage,
-      question:
-        "Siapakah nama pahlawan nasional yang disematkan pada nama Museum Batam Raja Ali Haji?",
+      question: "Siapakah nama pahlawan nasional yang disematkan pada nama Museum Batam Raja Ali Haji?",
       options: ["Raja Ali Haji", "Cut Nyak Dien", "Raja Haji Fisabilillah", "Tuanku Tambusai"],
       answer: 0,
     },
-    // dummy questions 2–10
     {
       img: null,
       question: "Karya Raja Ali Haji yang paling terkenal dan berisi nasihat moral dan etika kehidupan adalah?",
@@ -48,73 +49,65 @@ export default function QuizMuseumRajaAliHaji() {
     },
     {
       img: null,
-      question: "Raja Ali Haji dikenal sebagai pelopor modernisasi bahasa apa, yang menjadi cikal bakal Bahasa Indonesia?",
+      question: "Raja Ali Haji dikenal sebagai pelopor modernisasi bahasa apa?",
       options: ["Bahasa Arab", "Bahasa Belanda", "Bahasa Melayu", "Bahasa Inggris"],
       answer: 2,
     },
     {
       img: null,
-      question: "Koleksi Museum Raja Ali Haji yang menampilkan pakaian adat, perhiasan, dan perlengkapan rumah tangga masyarakat Melayu tempo dulu disebut koleksi apa?",
-      options: [
-        "Koleksi Seni & Kerajinan",
-        "Koleksi Etnografi",
-        "Koleksi Sejarah",
-        "Koleksi Arkeologi",
-      ],
+      question: "Koleksi Museum Raja Ali Haji yang menampilkan pakaian adat dan perlengkapan rumah tangga Melayu tempo dulu disebut?",
+      options: ["Koleksi Seni & Kerajinan", "Koleksi Etnografi", "Koleksi Sejarah", "Koleksi Arkeologi"],
       answer: 1,
     },
     {
       img: null,
-      question: "Hidangan ikonik khas Kepri yang penyajiannya direbus dan disantap bersama sambal spesial adalah?",
+      question: "Hidangan ikonik khas Kepri yang direbus dan disantap dengan sambal spesial adalah?",
       options: ["Mie Tarempa", "Otak-Otak", "Lempeng Sagu", "Gonggong"],
       answer: 3,
     },
     {
       img: null,
       question: "Kerajinan Miniatur Perahu Lancang Kuning melambangkan apa?",
-      options: ["Semangat pelaut dan warisan maritim yang kuat di Kepri", "Ketekunan para pengrajin", "Kekayaan hasil laut Kepri", "Kemakmuran kota Batam"],
+      options: [
+        "Semangat pelaut & warisan maritim Kepri",
+        "Ketekunan para pengrajin",
+        "Kekayaan hasil laut Kepri",
+        "Kemakmuran kota Batam"
+      ],
       answer: 0,
     },
     {
       img: null,
       question: "Motif pada Kerajinan Batik Gonggong terinspirasi dari apa?",
-      options: ["Bentuk perahu lancang kuning", "Tumbuhan di pesisir pantai", "Cangkang gonggong", "Bunga tanjung"],
+      options: ["Bentuk perahu lancang kuning", "Tumbuhan pesisir", "Cangkang gonggong", "Bunga tanjung"],
       answer: 2,
     },
     {
       img: null,
-      question: "Pada tahun berapa Batam secara resmi ditetapkan sebagai kota otonom melalui Undang-Undang Nomor 53 Tahun 1999?",
-      options: [
-        "1971",
-        "1999",
-        "1973",
-        "2002",
-      ],
+      question: "Pada tahun berapa Batam ditetapkan sebagai kota otonom?",
+      options: ["1971", "1999", "1973", "2002"],
       answer: 1,
     },
     {
       img: null,
       question: "Makanan pokok masyarakat Melayu zaman dahulu yang diolah menjadi lempengan yang dibakar, biasanya disajikan dengan ikan kuah pedas, disebut?",
-      options: ["Lempeng Sagu", "Otak-Otak", "Gonggong", "Mie Tarempa "],
+      options: ["Lempeng Sagu", "Otak-Otak", "Gonggong", "Mie Tarempa"],
       answer: 0,
     },
     {
       img: null,
       question: "Selain sebagai pusat peradaban Melayu, Kepri juga menjadi tempat yang selalu bertemunya apa?",
-      options: ["Para nelayan", "Kapal-kapal militer", "Berbagai kebudayaan", "Para wisatawan asing"],
+      options: ["Nelayan", "Kapal militer", "Berbagai kebudayaan", "Wisatawan asing"],
       answer: 2,
     },
   ];
 
-  /* ==================== LEADERBOARD DUMMY DATA ==================== */
-  // Data ini diperlukan agar Leaderboard tidak kosong
-  // Setiap user punya avatar + badge sendiri
-    const leaderboard = [
-      { id: 1, name: "Irfan", score: 1000, avatar: IrfanIcon, badge: BadgeGold },
-      { id: 2, name: "Marvel", score: 900, avatar: MarvelIcon, badge: BadgeSilver },
-      { id: 3, name: "Imam", score: 800, avatar: ImamIcon, badge: BadgeBronze },
-    ];
-  /* ================================================================ */
+  /* ==================== LEADERBOARD ==================== */
+  const leaderboard = [
+    { id: 1, name: "Irfan", score: 1000, avatar: IrfanIcon, badge: BadgeGold },
+    { id: 2, name: "Marvel", score: 900, avatar: MarvelIcon, badge: BadgeSilver },
+    { id: 3, name: "Imam", score: 800, avatar: ImamIcon, badge: BadgeBronze },
+  ];
 
   /* ==================== COUNTDOWN ==================== */
   useEffect(() => {
@@ -142,12 +135,11 @@ export default function QuizMuseumRajaAliHaji() {
     if (!showQuiz || showQuiz === "finish") return;
 
     clearInterval(timerRef.current);
-
     timerRef.current = setInterval(() => {
       setTimer((t) => {
         if (t <= 1) {
           clearInterval(timerRef.current);
-          handleSelect(-1); // timeout
+          handleSelect(-1);
           return 15;
         }
         return t - 1;
@@ -165,15 +157,14 @@ export default function QuizMuseumRajaAliHaji() {
 
   const tryPlay = (audio) => audio?.play?.().catch(() => {});
 
-  /* COUNTDOWN COLORS */
+  /* COUNTDOWN COLOR */
   const circleColor = { 3: "#E63946", 2: "#FFB800", 1: "#06C270" }[countdown];
 
-  /* ==================== FIXED HANDLE-SELECT ==================== */
+  /* ==================== HANDLE SELECT ==================== */
   const handleSelect = (i) => {
-    if (locked) return; // prevent double trigger
+    if (locked) return;
 
     clearInterval(timerRef.current);
-
     setLocked(true);
     setSelected(i);
 
@@ -227,7 +218,7 @@ export default function QuizMuseumRajaAliHaji() {
 
           <div className="flex gap-6 mt-6">
             <button
-              onClick={() => window.history.back()}
+              onClick={() => navigate("/challenge")}
               className="px-10 py-3 border border-[#246afe] rounded-xl text-[#246afe]"
             >
               Back
@@ -263,7 +254,7 @@ export default function QuizMuseumRajaAliHaji() {
       {showQuiz === true && (
         <div className="px-10 mt-6 mb-10 flex flex-col items-center">
 
-          {/* PROGRESS */}
+          {/* PROGRESS BAR */}
           <div className="w-full flex justify-center mb-6">
             <div className="w-[70%] h-3 bg-gray-200 rounded-full overflow-hidden">
               <div
@@ -281,7 +272,6 @@ export default function QuizMuseumRajaAliHaji() {
 
             {/* QUESTION */}
             <div className="flex flex-col lg:flex-row gap-8 justify-center">
-
               {questions[current].img && (
                 <img
                   src={questions[current].img}
@@ -303,7 +293,6 @@ export default function QuizMuseumRajaAliHaji() {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
               {questions[current].options.map((opt, i) => {
                 const correct = questions[current].answer;
-
                 let bg = ["#e63946", "#e6a823", "#2a9d47", "#246afe"][i];
 
                 if (selected !== null) {
@@ -333,28 +322,26 @@ export default function QuizMuseumRajaAliHaji() {
       {showQuiz === "finish" && (
         <div className="px-10 py-16 flex flex-col items-center">
 
-          {/* Combined section (Result and Leaderboard) */}
           <div className="w-full max-w-[1100px] grid grid-cols-1 lg:grid-cols-2 gap-10">
 
-            {/* LEFT: RESULT CARD (Sesuai Desain Gambar Anda) */}
+            {/* RESULT CARD */}
             <div>
-              {/* JUDUL RESULT (diposisikan di kiri, seperti Leaderboard) */}
               <h2 className="text-[40px] font-[550]">
                 <span className="inline-block bg-gradient-to-r from-[#246afe] via-[#9747ff] to-[#ffba08] bg-clip-text text-transparent">
                   Result
                 </span>
               </h2>
               <p className="text-gray-600 mb-6">Hasil kuis kamu</p>
-              
-              {/* KOTAK STATISTIK LINGKARAN */}
+
               <div className="bg-white rounded-3xl shadow-md p-10 flex items-center gap-10">
-                {/* RING PERCENT */}
+
+                {/* FIXED CIRCLE */}
                 <div className="relative w-32 h-32">
                   <svg className="w-full h-full -rotate-90">
                     <circle
                       cx="50%"
                       cy="50%"
-                      r="45%"
+                      r="45"
                       stroke="#E63946"
                       strokeWidth="12"
                       fill="none"
@@ -362,12 +349,15 @@ export default function QuizMuseumRajaAliHaji() {
                     <circle
                       cx="50%"
                       cy="50%"
-                      r="45%"
+                      r="45"
                       stroke="#06C270"
                       strokeWidth="12"
                       fill="none"
-                      strokeDasharray="283"
-                      strokeDashoffset={283 - (283 * (score / questions.length))}
+                      strokeDasharray={2 * Math.PI * 45}
+                      strokeDashoffset={
+                        (2 * Math.PI * 45) -
+                        (2 * Math.PI * 45 * (score / questions.length))
+                      }
                       className="transition-all duration-700"
                     />
                   </svg>
@@ -390,7 +380,7 @@ export default function QuizMuseumRajaAliHaji() {
               </div>
             </div>
 
-            {/* RIGHT: LEADERBOARD (Tetap sama) */}
+            {/* LEADERBOARD */}
             <div>
               <h2 className="text-[40px] font-[550]">
                 <span className="inline-block bg-gradient-to-r from-[#246afe] via-[#9747ff] to-[#ffba08] bg-clip-text text-transparent">
@@ -409,22 +399,16 @@ export default function QuizMuseumRajaAliHaji() {
                       <span className="text-white bg-gradient-to-r from-[#246afe] to-[#9747ff] w-7 h-7 flex items-center justify-center rounded-full font-semibold">
                         {user.id}
                       </span>
-                      <img
-                        src={user.avatar}
-                        alt={user.name}
-                        className="w-10 h-10 rounded-full object-cover"
-                      />
+                      <img src={user.avatar} className="w-10 h-10 rounded-full" />
                       <p className="font-medium text-gray-800">{user.name}</p>
                     </div>
+
                     <div className="relative flex items-center justify-end w-[120px]">
                       <img
                         src={user.badge}
-                        alt="badge"
                         className="absolute right-0 w-24 h-24 object-contain"
                       />
-                      <span className="text-[#ff8508] font-semibold">
-                        {user.score}
-                      </span>
+                      <span className="text-[#ff8508] font-semibold">{user.score}</span>
                     </div>
                   </div>
                 ))}
@@ -432,18 +416,17 @@ export default function QuizMuseumRajaAliHaji() {
             </div>
           </div>
 
-
-          {/* BUTTONS (Tetap sama) */}
+          {/* BUTTONS */}
           <div className="flex gap-6 mt-14">
             <button
-              onClick={() => window.history.back()}
+              onClick={() => navigate("/challenge")}
               className="px-12 py-3 bg-[#246afe] text-white rounded-xl text-lg font-semibold hover:bg-[#1d56c9]"
             >
               Back To Challenge
             </button>
           </div>
-  </div>
-)}
+        </div>
+      )}
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from "react-router-dom";
 import "../styles/Footer.css";
 
 import edunaLogo from '../assets/images/eduna-logo-big.svg';
@@ -12,6 +13,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
+
         {/* Section 1: Eduna Logo */}
         <div className="footer-logo-section">
           <img src={edunaLogo} alt="Eduna Logo" className="footer-logo" />
@@ -25,16 +27,43 @@ const Footer = () => {
 
         {/* Section 2: Navigation Menu Title */}
         <div className="footer-nav-title-section">
-          <h3 className="footer-heading">Navigation <br/> Menu</h3>
+          <h3 className="footer-heading">
+            Navigation <br /> Menu
+          </h3>
         </div>
 
         {/* Section 3: Navigation Links */}
         <div className="footer-nav-section">
           <nav className="footer-nav">
-            <a href="#home" className="footer-link">Home</a>
-            <a href="#explore" className="footer-link">Explore</a>
-            <a href="#challenges" className="footer-link">Challenges</a>
-            <a href="#community" className="footer-link">Community</a>
+
+            <NavLink 
+              to="/" 
+              className="footer-link"
+            >
+              Home
+            </NavLink>
+
+            <NavLink
+              to="/explore"
+              className="footer-link"
+            >
+              Explore
+            </NavLink>
+
+            <NavLink
+              to="/challenge"
+              className="footer-link"
+            >
+              Challenges
+            </NavLink>
+
+            <NavLink
+              to="/community"
+              className="footer-link"
+            >
+              Community
+            </NavLink>
+
           </nav>
         </div>
 
@@ -42,36 +71,16 @@ const Footer = () => {
         <div className="footer-social-section">
           <h3 className="footer-heading">Social Media</h3>
           <div className="social-icons">
-            <a 
-              href="https://instagram.com" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="social-icon"
-            >
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon">
               <img src={instagramIcon} alt="Instagram" className="icon-img" />
             </a>
-            <a 
-              href="https://facebook.com" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="social-icon"
-            >
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon">
               <img src={facebookIcon} alt="Facebook" className="icon-img" />
             </a>
-            <a 
-              href="https://tiktok.com" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="social-icon"
-            >
+            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="social-icon">
               <img src={tiktokIcon} alt="TikTok" className="icon-img" />
             </a>
-            <a 
-              href="https://linkedin.com" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="social-icon"
-            >
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-icon">
               <img src={linkedinIcon} alt="LinkedIn" className="icon-img" />
             </a>
           </div>
@@ -91,4 +100,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

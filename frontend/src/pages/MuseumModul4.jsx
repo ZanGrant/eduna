@@ -193,10 +193,10 @@ export default function Module4SejarahBatam() {
 
             <div className="mt-8">
               <button
-                onClick={() => navigate("/museum-raja-ali-haji")} // kembali ke beranda museum
+                onClick={() => navigate("/quiz-museum-raja-ali-haji/utama")} // ke halaman quiz museum raja ali haji
                 className="flex items-center justify-center gap-2 w-full bg-[#246afe] hover:bg-[#1a58e0] text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 text-base shadow-md hover:shadow-lg"
               >
-                <span>Kembali ke Beranda Museum</span>
+                <span>Yuk, Ikutan Kuisnya</span>
                 <ChevronRight size={18} />
               </button>
             </div>
