@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/Images/eduna-logo.png";
 
-const Navbar = () => {
+const Navbar = ({ openLogin, openRegister }) => {
   const [open, setOpen] = useState(false);
 
   // BASE CLASS FOR LINKS
@@ -17,7 +17,6 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 w-full h-[100px] bg-white shadow-[0_4px_12px_rgba(0,0,0,0.05)] px-8 lg:px-20 flex justify-between items-center z-[1000] font-satoshi">
-
       {/* LOGO */}
       <div className="flex items-center">
         <img src={logo} alt="eduna logo" className="h-[80px] object-contain" />
@@ -78,18 +77,20 @@ const Navbar = () => {
         </li>
       </ul>
 
-      {/* BUTTONS */}
+      {/* DESKTOP BUTTONS */}
       <div className="hidden lg:flex items-center gap-6">
-        <NavLink to="/login">
-          <button className="border border-[#2266ff] text-[#2266ff] rounded-[10px] px-6 py-2 text-[18px] font-medium hover:bg-[#2266ff] hover:text-white transition">
-            Login
-          </button>
-        </NavLink>
-        <NavLink to="/register">
-          <button className="bg-[#2266ff] text-white rounded-[10px] px-6 py-2 text-[18px] font-medium hover:bg-[#004be0] transition">
-            Sign Up
-          </button>
-        </NavLink>
+        <button
+          onClick={openLogin}
+          className="border border-[#2266ff] text-[#2266ff] rounded-[10px] px-6 py-2 text-[18px] font-medium hover:bg-[#2266ff] hover:text-white transition"
+        >
+          Login
+        </button>
+        <button
+          onClick={openRegister}
+          className="bg-[#2266ff] text-white rounded-[10px] px-6 py-2 text-[18px] font-medium hover:bg-[#004be0] transition"
+        >
+          Sign Up
+        </button>
       </div>
 
       {/* MOBILE MENU BUTTON */}
@@ -154,17 +155,25 @@ const Navbar = () => {
           </NavLink>
 
           <div className="flex flex-col gap-4 pt-4">
-            <NavLink to="/login" onClick={() => setOpen(false)}>
-              <button className="border border-[#2266ff] text-[#2266ff] rounded-[10px] px-6 py-2 text-[18px] font-medium hover:bg-[#2266ff] hover:text-white transition w-full">
-                Login
-              </button>
-            </NavLink>
+            <button
+              onClick={() => {
+                openLogin();
+                setOpen(false);
+              }}
+              className="border border-[#2266ff] text-[#2266ff] rounded-[10px] px-6 py-2 text-[18px] font-medium hover:bg-[#2266ff] hover:text-white transition w-full"
+            >
+              Login
+            </button>
 
-            <NavLink to="/register" onClick={() => setOpen(false)}>
-              <button className="bg-[#2266ff] text-white rounded-[10px] px-6 py-2 text-[18px] font-medium hover:bg-[#004be0] transition w-full">
-                Sign Up
-              </button>
-            </NavLink>
+            <button
+              onClick={() => {
+                openRegister();
+                setOpen(false);
+              }}
+              className="bg-[#2266ff] text-white rounded-[10px] px-6 py-2 text-[18px] font-medium hover:bg-[#004be0] transition w-full"
+            >
+              Sign Up
+            </button>
           </div>
         </div>
       )}

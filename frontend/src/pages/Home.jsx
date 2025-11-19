@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+import ForgotPassword from "../pages/ForgotPassword";
 
 import logo from "../assets/images/eduna-logo-big.svg";
 import promoBanner from "../assets/images/PromoBanner.png";
@@ -20,6 +23,10 @@ const Home = () => {
   const [images, setImages] = useState([heroLeft, heroCenter, heroRight]);
   const [fade, setFade] = useState(false);
   const navigate = useNavigate();
+
+  const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
+  const [showForgot, setShowForgot] = useState(false);
 
   // Rotasi gambar setiap 3 detik
   useEffect(() => {
@@ -67,8 +74,45 @@ const Home = () => {
 
   return (
     <div>
-      <Navbar />
+      {/* NAVBAR + MODAL OVERLAY */}
+      <Navbar
+        openLogin={() => setShowLogin(true)}
+        openRegister={() => setShowRegister(true)}
+      />
 
+      {showLogin && (
+        <Login
+          onClose={() => setShowLogin(false)}
+          onGoRegister={() => {
+            setShowLogin(false);
+            setShowRegister(true);
+          }}
+          onForgotPassword={() => {
+            setShowLogin(false);
+            setShowForgot(true);
+          }}
+        />
+      )}
+        
+
+      {showRegister && (
+        <Register
+          onClose={() => setShowRegister(false)}
+          onGoLogin={() => {
+            setShowRegister(false);
+            setShowLogin(true);
+          }}
+        />
+      )}
+{showForgot && (
+  <ForgotPassword
+    onClose={() => setShowForgot(false)}
+    onBackToLogin={() => {
+      setShowForgot(false);
+      setShowLogin(true);
+    }}
+  />
+)}
       {/* == HERO SECTION == */}
       <section className="relative w-full pb-[90px] overflow-hidden font-satoshi bg-white mt-5">
         <div
@@ -117,7 +161,8 @@ const Home = () => {
         </div>
 
         {/* SEARCH CARD */}
-        <div className="
+        <div
+          className="
             absolute left-1/2 bottom-[150px] -translate-x-1/2
             bg-white shadow-lg rounded-[16px]
             p-[16px_15px] text-left
@@ -125,9 +170,11 @@ const Home = () => {
             lg:w-[55%] md:w-[60%] sm:w-[80%]
           "
         >
-          <h2 className="text-[36px] mb-[4px] ml-[4px] font-[550]
+          <h2
+            className="text-[36px] mb-[4px] ml-[4px] font-[550]
             bg-[linear-gradient(90deg,#246afe_18%,#9747ff_37%,#ffba08_74%)]
-            bg-clip-text text-transparent inline-block">
+            bg-clip-text text-transparent inline-block"
+          >
             Find Your Learning Journey
           </h2>
 
@@ -183,12 +230,13 @@ const Home = () => {
       {/* == ABOUT US == */}
       <section className="flex justify-start items-center pt-[100px] pr-[100px] pb-[100px] pl-0 bg-white relative z-[5] max-lg:flex-col max-lg:px-10 max-lg:py-20 overflow-hidden">
         <div className="flex items-center justify-between gap-[80px] w-full max-w-[1400px] mx-auto max-lg:flex-col max-lg:gap-10">
-          
           {/* LOGO BOX */}
           <div className="flex justify-start items-center w-[45%] max-lg:w-full relative">
-            <div className="p-[80px] rounded-[25px] bg-white shadow-[0_0_40px_rgba(36,106,254,0.1)]
+            <div
+              className="p-[80px] rounded-[25px] bg-white shadow-[0_0_40px_rgba(36,106,254,0.1)]
               flex justify-center items-center border border-[#eaeaea]
-              w-full max-lg:p-10 max-lg:rounded-[25px] -ml-[20px] max-lg:ml-0 transition-all duration-300">
+              w-full max-lg:p-10 max-lg:rounded-[25px] -ml-[20px] max-lg:ml-0 transition-all duration-300"
+            >
               <img
                 src={logo}
                 alt="Eduna Logo"
@@ -199,15 +247,26 @@ const Home = () => {
 
           {/* ABOUT TEXT */}
           <div className="flex-1 text-left max-lg:text-center">
-            <h2 className="text-[52px] font-[580] mb-1 max-lg:text-[1.8rem]
+            <h2
+              className="text-[52px] font-[580] mb-1 max-lg:text-[1.8rem]
               bg-[linear-gradient(90deg,#246afe_18%,#9747ff_37%,#ffba08_74%)]
-              bg-clip-text text-transparent inline-block">
+              bg-clip-text text-transparent inline-block"
+            >
               About Us
             </h2>
 
-            <p className="text-[20px] leading-[1.8] text-[#333] max-w-[580px]
-              max-lg:max-w-full max-lg:mx-auto text-justify">
-              <strong className="text-black font-semibold">Eduna (Education Nusa)</strong> adalah platform digital pariwisata Kepulauan Riau yang memadukan layanan praktis dan edukasi. Eduna memudahkan masyarakat dan wisatawan untuk booking keberangkatan, sekaligus menghadirkan learning module dan challenges untuk mengenal budaya, tempat, dan pengalaman lokal secara interaktif.
+            <p
+              className="text-[20px] leading-[1.8] text-[#333] max-w-[580px]
+              max-lg:max-w-full max-lg:mx-auto text-justify"
+            >
+              <strong className="text-black font-semibold">
+                Eduna (Education Nusa)
+              </strong>{" "}
+              adalah platform digital pariwisata Kepulauan Riau yang memadukan
+              layanan praktis dan edukasi. Eduna memudahkan masyarakat dan
+              wisatawan untuk booking keberangkatan, sekaligus menghadirkan
+              learning module dan challenges untuk mengenal budaya, tempat, dan
+              pengalaman lokal secara interaktif.
             </p>
           </div>
         </div>
