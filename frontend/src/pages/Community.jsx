@@ -82,8 +82,8 @@ const Community = () => {
       <div className="w-full max-w-[1100px] mx-auto px-6 pt-10 pb-10 mt-10">
 
         {/* SEARCH BAR */}
-        <div className="max-w-[900px] mx-auto flex items-center bg-white shadow-sm rounded-full px-5 py-3 mb-10 mt-20">
-          <Search className="text-gray-400" size={20} />
+        <div className="max-w-[900px] mx-auto flex items-center bg-white shadow-sm rounded-xl px-5 py-3 mb-10 mt-20">
+          <Search className="text-gray-400" size={20} color="blue" />
           <input
             type="text"
             placeholder="Place to go"
