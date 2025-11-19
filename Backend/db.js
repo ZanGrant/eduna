@@ -10,11 +10,13 @@ export const connectDB = async () => {
     try {
       db = await mysql.createConnection({
         host: process.env.DB_HOST || "127.0.0.1",
-        user: process.env.DB_USER || "eduna_user",
-        password: process.env.DB_PASS || "babayo",
+        user: process.env.DB_USER || "root",
+        password: process.env.DB_PASS || "",
         database: process.env.DB_NAME || "eduna_db",
-        port: process.env.DB_PORT || 3306
+        port: process.env.DB_PORT || 3306,
+        multipleStatements: true
       });
+
       console.log("✅ MySQL connected!");
     } catch (err) {
       console.error("❌ MySQL connection error:", err.message);
