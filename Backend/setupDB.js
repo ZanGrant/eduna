@@ -1,29 +1,32 @@
+// setupDB.js
 import mysql from "mysql2/promise";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 const queries = [
-  `CREATE DATABASE IF NOT EXISTS eduna_db;`,
+  `DROP DATABASE IF EXISTS eduna_db;`,
+  `CREATE DATABASE eduna_db;`,
   `USE eduna_db;`,
 
-  `CREATE TABLE IF NOT EXISTS lokasi (
+  `CREATE TABLE lokasi (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nama_lokasi VARCHAR(255) NOT NULL,
     tipe VARCHAR(100),
     learning_tersedia BOOLEAN DEFAULT FALSE,
-    active BOOLEAN DEFAULT TRUE
+    active BOOLEAN DEFAULT TRUE,
+    image VARCHAR(255)
   );`,
 
-  `INSERT INTO lokasi (nama_lokasi, tipe, learning_tersedia, active) VALUES
-  ('Museum Raja Ali Haji Batam', 'History', TRUE, TRUE),
-  ('Kampung Vietnam', 'History', FALSE, FALSE),
-  ('Ranoh Island Resort', 'Beach', FALSE, FALSE),
-  ('Waterpark Top 100 Batu Aji', 'Waterpark', FALSE, FALSE),
-  ('Hutan Wisata Mata Kucing', 'Nature', FALSE, FALSE),
-  ('Taman Rusa Sekupang', 'Nature', FALSE, FALSE),
-  ('Mega Wisata Ocarina', 'Waterpark', FALSE, FALSE),
-  ('Batam Zoo Paradise', 'Nature', FALSE, FALSE);`
+  `INSERT INTO lokasi (nama_lokasi, tipe, learning_tersedia, active, image) VALUES
+  ('Museum Raja Ali Haji Batam', 'History', TRUE, TRUE, 'Museum.png'),
+  ('Kampung Vietnam', 'History', FALSE, FALSE, 'VietnamCamp.png'),
+  ('Ranoh Island Resort', 'Beach', FALSE, FALSE, 'RanohIsland.png'),
+  ('Waterpark Top 100 Batu Aji', 'Waterpark', FALSE, FALSE, 'Waterpark.png'),
+  ('Hutan Wisata Mata Kucing', 'Nature', FALSE, FALSE, 'HutanWisataMataKucing.png'),
+  ('Taman Rusa Sekupang', 'Nature', FALSE, FALSE, 'TamanRusa.png'),
+  ('Mega Wisata Ocarina', 'Waterpark', FALSE, FALSE, 'MegaWisataOcarina.png'),
+  ('Batam Zoo Paradise', 'Nature', FALSE, FALSE, 'BatamZooParadise.png');`
 ];
 
 const setupDB = async () => {

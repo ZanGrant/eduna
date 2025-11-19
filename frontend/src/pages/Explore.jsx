@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ Tambahkan ini
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Search, SlidersHorizontalIcon } from "lucide-react";
@@ -16,26 +16,46 @@ import megawisataImg from "../assets/images/MegaWisataOcarina.png";
 export default function Explore() {
   const [activeTab, setActiveTab] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [destinations, setDestinations] = useState([]); //Babayo
   const navigate = useNavigate(); // ✅ Hook untuk pindah halaman
 
-  const destinations = [
-    {
-      id: 1,
-      name: "Museum Raja Ali Haji Batam",
-      category: "Sejarah",
-      image: museumImg,
-      status: "available",
-      badge: "Learning Available",
-      path: "/museum-raja-ali-haji", // ✅ Tambahkan path
-    },
-    { id: 2, name: "Kampung Vietnam", category: "Sejarah", image: vietnamImg, status: "coming-soon" },
-    { id: 3, name: "Ranoh Island Resort", category: "Resort - Pantai", image: ranohImg, status: "coming-soon" },
-    { id: 4, name: "Waterpark Top 100 Batu Aji", category: "Waterpark", image: waterparkImg, status: "coming-soon" },
-    { id: 5, name: "Hutan Wisata Mata Kucing", category: "Hutan Wisata", image: hutanImg, status: "coming-soon" },
-    { id: 6, name: "Taman Rusa Sekupang", category: "Kebun Binatang - Taman", image: tamanrusaImg, status: "coming-soon" },
-    { id: 7, name: "Mega Wisata Ocarina", category: "Mega Wisata", image: megawisataImg, status: "coming-soon" },
-    { id: 8, name: "Batam Zoo Paradise", category: "Kebun Binatang", image: batamzooImg, status: "coming-soon" },
-  ];
+  // const destinations = [
+  //   {
+  //     id: 1,
+  //     name: "Museum Raja Ali Haji Batam",
+  //     category: "Sejarah",
+  //     image: museumImg,
+  //     status: "available",
+  //     badge: "Learning Available",
+  //     path: "/museum-raja-ali-haji",
+  //   },
+  //   { id: 2, name: "Kampung Vietnam", category: "Sejarah", image: vietnamImg, status: "coming-soon" },
+  //   { id: 3, name: "Ranoh Island Resort", category: "Resort - Pantai", image: ranohImg, status: "coming-soon" },
+  //   { id: 4, name: "Waterpark Top 100 Batu Aji", category: "Waterpark", image: waterparkImg, status: "coming-soon" },
+  //   { id: 5, name: "Hutan Wisata Mata Kucing", category: "Hutan Wisata", image: hutanImg, status: "coming-soon" },
+  //   { id: 6, name: "Taman Rusa Sekupang", category: "Kebun Binatang - Taman", image: tamanrusaImg, status: "coming-soon" },
+  //   { id: 7, name: "Mega Wisata Ocarina", category: "Mega Wisata", image: megawisataImg, status: "coming-soon" },
+  //   { id: 8, name: "Batam Zoo Paradise", category: "Kebun Binatang", image: batamzooImg, status: "coming-soon" },
+  // ];
+
+  // fetch data dari backend
+  useEffect(() => {
+    fetch("http://localhost:5000/api/lokasi")
+      .then(res => res.json())
+      .then(data => {
+        const mapped = data.map(d => ({
+          id: d.id,
+          name: d.nama_lokasi,
+          category: d.tipe,
+          image: `src/assets/images/${d.image}`,
+          status: d.active ? "available" : "coming-soon",
+          badge: d.learning_tersedia ? "Learning Available" : null,
+        }));
+        setDestinations(mapped);
+      })
+      .catch(err => console.error(err));
+  }, []);
+
 
   const filteredDestinations = destinations.filter((d) => {
     if (activeTab === "learning" && !d.badge) return false;

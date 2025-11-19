@@ -1,9 +1,9 @@
 // routes/index.js
-import express from 'express';
-import lokasiRouter from './lokasi.js';
+import express from "express";
+import lokasiRoute from "./lokasi.js";
 
 const router = express.Router();
 
-router.use('/lokasi', lokasiRouter); // /api/lokasi
+router.use("/lokasi", lokasiRoute);
 
 export default router;
