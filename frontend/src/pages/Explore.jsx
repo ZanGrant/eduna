@@ -40,7 +40,7 @@ export default function Explore({ isLoggedIn, openLogin, openRegister }) {
 
   // fetch data dari backend
   useEffect(() => {
-    fetch("http://localhost:5000/api/lokasi")
+    fetch("http://localhost:3001/api/lokasi")
       .then(res => res.json())
       .then(data => {
         const mapped = data.map(d => ({
@@ -50,6 +50,7 @@ export default function Explore({ isLoggedIn, openLogin, openRegister }) {
           image: `src/assets/images/${d.image}`,
           status: d.active ? "available" : "coming-soon",
           badge: d.learning_tersedia ? "Learning Available" : null,
+          path: "/museum-raja-ali-haji",
         }));
         setDestinations(mapped);
       })

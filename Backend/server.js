@@ -8,14 +8,18 @@ import { connectDB } from "./db.js";
 dotenv.config();
 const app = express();
 
-// Middleware
-app.use(cors());
+// Middleware global
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true
+}));
 app.use(express.json());
 
-// Connect database sebelum listen
-connectDB().then(() => {
-  app.use("/api", router);
+// Mount router DULU
+app.use("/api", router);
 
-  const PORT = process.env.PORT || 5000;
+// Connect DB, lalu listen
+connectDB().then(() => {
+  const PORT = process.env.PORT || 3001;
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 });
