@@ -76,8 +76,6 @@ const Home = ({ isLoggedIn, openLogin, openRegister }) => {
         isLoggedIn={isLoggedIn}
       />
 
-      {/* 👉 TIDAK ADA LAGI showLogin / showRegister / showForgot di sini */}
-
       {/* == HERO SECTION == */}
       <section className="relative w-full pb-[90px] overflow-hidden font-satoshi bg-white mt-5">
         <div
@@ -181,7 +179,110 @@ const Home = ({ isLoggedIn, openLogin, openRegister }) => {
         </div>
       </section>
 
-      {/* … bagian bawah (promo, about, recommendation) tetap persis punyamu … */}
+      {/* == GAME BANNER == */}
+      <section className="flex justify-center items-center py-0 bg-white px-4 sm:px-6 lg:px-8 relative -mt-10">
+        <div className="promo-illu w-full flex justify-center">
+          <img
+            src={promoBanner}
+            alt="Promo Banner Illustration"
+            className="w-full max-w-[1100px] sm:max-w-[800px] md:max-w-[900px] lg:max-w-[1100px] object-contain"
+          />
+        </div>
+      </section>
+
+      {/* == ABOUT US == */}
+      <section className="flex justify-start items-center pt-[100px] pr-[100px] pb-[100px] pl-0 bg-white relative z-[5] max-lg:flex-col max-lg:px-10 max-lg:py-20 overflow-hidden">
+        <div className="flex items-center justify-between gap-[80px] w-full max-w-[1400px] mx-auto max-lg:flex-col max-lg:gap-10">
+          {/* LOGO BOX */}
+          <div className="flex justify-start items-center w-[45%] max-lg:w-full relative">
+            <div
+              className="p-[80px] rounded-[25px] bg-white shadow-[0_0_40px_rgba(36,106,254,0.1)]
+              flex justify-center items-center border border-[#eaeaea]
+              w-full max-lg:p-10 max-lg:rounded-[25px] -ml-[20px] max-lg:ml-0 transition-all duration-300"
+            >
+              <img
+                src={logo}
+                alt="Eduna Logo"
+                className="w-[380px] h-auto object-contain max-lg:w-[280px]"
+              />
+            </div>
+          </div>
+
+          {/* ABOUT TEXT */}
+          <div className="flex-1 text-left max-lg:text-center">
+            <h2
+              className="text-[52px] font-[580] mb-1 max-lg:text-[1.8rem]
+              bg-[linear-gradient(90deg,#246afe_18%,#9747ff_37%,#ffba08_74%)]
+              bg-clip-text text-transparent inline-block"
+            >
+              About Us
+            </h2>
+
+            <p
+              className="text-[20px] leading-[1.8] text-[#333] max-w-[580px]
+              max-lg:max-w-full max-lg:mx-auto text-justify"
+            >
+              <strong className="text-black font-semibold">
+                Eduna (Education Nusa)
+              </strong>{" "}
+              adalah platform digital pariwisata Kepulauan Riau yang memadukan
+              layanan praktis dan edukasi. Eduna memudahkan masyarakat dan
+              wisatawan untuk booking keberangkatan, sekaligus menghadirkan
+              learning module dan challenges untuk mengenal budaya, tempat, dan
+              pengalaman lokal secara interaktif.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* == RECOMMENDATION EXPLORE == */}
+      <div className="w-full py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-white">
+        <div className="max-w-[1280px] mx-auto relative">
+          <h2 className="text-center font-[550] mb-12 leading-[1.3] text-[1.875rem] md:text-2xl lg:text-[2.5rem]">
+            <span className="bg-gradient-to-r from-[#246afe] via-[#9747ff] to-[#ffba08] bg-clip-text text-transparent">
+              Recommended Location to Explore!
+            </span>
+          </h2>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {locations.map((location) => (
+              <div
+                key={location.id}
+                onClick={() => {
+                  if (location.title === "Museum Batam Raja Ali Haji") {
+                    navigate("/museum-raja-ali-haji");
+                  }
+                }}
+                className="bg-white rounded-[1.5rem] overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all p-4 cursor-pointer"
+              >
+                <div className="relative h-48 md:h-44 rounded-lg overflow-hidden mb-4">
+                  <img
+                    src={location.image}
+                    alt={location.title}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  />
+                  {location.comingSoon && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 rounded-lg">
+                      <span className="bg-blue-600 text-white px-4 py-2 rounded-12 text-sm font-medium shadow-lg">
+                        COMING SOON
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                <div className="px-2 pb-2">
+                  <h3 className="text-lg font-[550] mb-1 leading-6">
+                    {location.title}
+                  </h3>
+                  <p className="text-white-500 text-sm font-medium">
+                    {location.category}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
       <Footer />
     </div>
