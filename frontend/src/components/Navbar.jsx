@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/Images/eduna-logo.png";
+import ProfileIcon from "../assets/icons/Icon Leaderboard 1.svg";
 
-const Navbar = ({ openLogin, openRegister }) => {
+const Navbar = ({ openLogin, openRegister, isLoggedIn  }) => {
   const [open, setOpen] = useState(false);
 
   // BASE CLASS FOR LINKS
@@ -78,19 +79,33 @@ const Navbar = ({ openLogin, openRegister }) => {
       </ul>
 
       {/* DESKTOP BUTTONS */}
-      <div className="hidden lg:flex items-center gap-6">
-        <button
-          onClick={openLogin}
-          className="border border-[#2266ff] text-[#2266ff] rounded-[10px] px-6 py-2 text-[18px] font-medium hover:bg-[#2266ff] hover:text-white transition"
-        >
-          Login
-        </button>
-        <button
-          onClick={openRegister}
-          className="bg-[#2266ff] text-white rounded-[10px] px-6 py-2 text-[18px] font-medium hover:bg-[#004be0] transition"
-        >
-          Sign Up
-        </button>
+            <div className="hidden lg:flex items-center gap-6">
+        {isLoggedIn ? (
+          <NavLink to="/profile">
+            <button className="rounded-full p-1 border border-[#2266ff] hover:bg-[#2266ff]/10 transition">
+              <img
+                src={ProfileIcon}
+                alt="Profile"
+                className="w-9 h-9 object-contain"
+              />
+            </button>
+          </NavLink>
+        ) : (
+          <>
+            <button
+              onClick={openLogin}
+              className="border border-[#2266ff] text-[#2266ff] rounded-[10px] px-6 py-2 text-[18px] font-medium hover:bg-[#2266ff] hover:text-white transition"
+            >
+              Login
+            </button>
+            <button
+              onClick={openRegister}
+              className="bg-[#2266ff] text-white rounded-[10px] px-6 py-2 text-[18px] font-medium hover:bg-[#004be0] transition"
+            >
+              Sign Up
+            </button>
+          </>
+        )}
       </div>
 
       {/* MOBILE MENU BUTTON */}
@@ -155,27 +170,42 @@ const Navbar = ({ openLogin, openRegister }) => {
           </NavLink>
 
           <div className="flex flex-col gap-4 pt-4">
-            <button
-              onClick={() => {
-                openLogin();
-                setOpen(false);
-              }}
-              className="border border-[#2266ff] text-[#2266ff] rounded-[10px] px-6 py-2 text-[18px] font-medium hover:bg-[#2266ff] hover:text-white transition w-full"
-            >
-              Login
-            </button>
+            {isLoggedIn ? (
+              <NavLink to="/profile" onClick={() => setOpen(false)}>
+                <button className="border border-[#2266ff] text-[#2266ff] rounded-[10px] px-6 py-2 text-[18px] font-medium hover:bg-[#2266ff] hover:text-white transition w-full flex items-center justify-center gap-2">
+                  <img
+                    src={ProfileIcon}
+                    alt="Profile"
+                    className="w-7 h-7 object-contain"
+                  />
+                  <span>Profile</span>
+                </button>
+              </NavLink>
+            ) : (
+              <>
+                <button
+                  onClick={() => {
+                    openLogin();
+                    setOpen(false);
+                  }}
+                  className="border border-[#2266ff] text-[#2266ff] rounded-[10px] px-6 py-2 text-[18px] font-medium hover:bg-[#2266ff] hover:text-white transition w-full"
+                >
+                  Login
+                </button>
 
-            <button
-              onClick={() => {
-                openRegister();
-                setOpen(false);
-              }}
-              className="bg-[#2266ff] text-white rounded-[10px] px-6 py-2 text-[18px] font-medium hover:bg-[#004be0] transition w-full"
-            >
-              Sign Up
-            </button>
+                <button
+                  onClick={() => {
+                    openRegister();
+                    setOpen(false);
+                  }}
+                  className="bg-[#2266ff] text-white rounded-[10px] px-6 py-2 text-[18px] font-medium hover:bg-[#004be0] transition w-full"
+                >
+                  Sign Up
+                </button>
+              </>
+            )}
           </div>
-        </div>
+          </div>
       )}
     </nav>
   );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
+
 import Footer from "../components/Footer";
 import { Search, SlidersHorizontalIcon } from "lucide-react";
 
@@ -66,7 +66,6 @@ export default function Explore() {
 
   return (
     <div>
-      <Navbar />
 
       {/* ===== Explore Section ===== */}
       <div className="pt-[130px] px-6 min-h-screen bg-gray-50 pb-2">

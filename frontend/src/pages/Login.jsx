@@ -2,7 +2,18 @@
 import React from "react";
 import MuseumImage from "../assets/images/museum-community.svg";
 
-export default function Login({ onClose, onGoRegister, onForgotPassword }) {
+export default function Login({
+  onClose,
+  onGoRegister,
+  onForgotPassword,
+  onLoginSuccess,
+}) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // TODO: di sini normalnya cek username/password ke backend
+    if (onLoginSuccess) onLoginSuccess(); // kasih tahu Home kalo login sukses
+  };
+
   return (
     <div className="fixed inset-0 z-[2000] flex items-center justify-center bg-black/60">
       {/* klik luar card = close */}
@@ -36,7 +47,8 @@ export default function Login({ onClose, onGoRegister, onForgotPassword }) {
               <p className="text-gray-600 mt-2">Login to continue</p>
             </div>
 
-            <form className="space-y-6">
+            {/* PENTING: pakai onSubmit={handleSubmit} */}
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label className="block text-gray-700 font-medium mb-2">
                   Username

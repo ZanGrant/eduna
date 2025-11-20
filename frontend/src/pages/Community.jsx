@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
@@ -75,8 +75,7 @@ const Community = () => {
   ];
 
   return (
-    <>
-      <Navbar />
+  <div>
 
       {/* ===================== MAIN WRAPPER ===================== */}
       <div className="w-full max-w-[1100px] mx-auto px-6 pt-10 pb-10 mt-10">
@@ -196,7 +195,8 @@ const Community = () => {
       </div>
 
       <Footer />
-    </>
+    </div>
+  
   );
 };
 

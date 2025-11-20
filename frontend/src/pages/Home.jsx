@@ -27,6 +27,7 @@ const Home = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   const [showForgot, setShowForgot] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // Rotasi gambar setiap 3 detik
   useEffect(() => {
@@ -78,6 +79,7 @@ const Home = () => {
       <Navbar
         openLogin={() => setShowLogin(true)}
         openRegister={() => setShowRegister(true)}
+        isLoggedIn={isLoggedIn}
       />
 
       {showLogin && (
@@ -90,6 +92,10 @@ const Home = () => {
           onForgotPassword={() => {
             setShowLogin(false);
             setShowForgot(true);
+          }}
+          onLoginSuccess={() => {
+            setIsLoggedIn(true);
+            setShowLogin(false);
           }}
         />
       )}
