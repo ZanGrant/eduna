@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Search, SlidersHorizontalIcon } from "lucide-react";
 
@@ -13,7 +13,7 @@ import waterparkImg from "../assets/images/Waterpark.png";
 import tamanrusaImg from "../assets/images/TamanRusa.png";
 import megawisataImg from "../assets/images/MegaWisataOcarina.png";
 
-export default function Explore() {
+export default function Explore({ isLoggedIn, openLogin, openRegister }) {
   const [activeTab, setActiveTab] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [destinations, setDestinations] = useState([]); //Babayo
@@ -66,6 +66,13 @@ export default function Explore() {
 
   return (
     <div>
+      {/* NAVBAR */}
+      <Navbar
+        isLoggedIn={isLoggedIn}
+        openLogin={openLogin}
+        openRegister={openRegister}
+      />
+  
 
       {/* ===== Explore Section ===== */}
       <div className="pt-[130px] px-6 min-h-screen bg-gray-50 pb-2">

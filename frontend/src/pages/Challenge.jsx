@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"; // ⬅️ DITAMBAHKAN
-
+import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 // 🖼️ Import avatar dan badge (pastikan nama file sesuai punyamu)
@@ -14,7 +14,7 @@ import BadgeGold from "../assets/icons/Badge 1.svg";
 import BadgeSilver from "../assets/icons/Badge 2.svg";
 import BadgeBronze from "../assets/icons/Badge 3.svg";
 
-export default function Challenge() {
+export default function Challenge({ isLoggedIn, openLogin, openRegister }) {
 
   const navigate = useNavigate(); // ⬅️ DITAMBAHKAN
 
@@ -27,9 +27,12 @@ export default function Challenge() {
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-gray-800">
-      {/* Navbar */}
-      
-
+      {/* NAVBAR */}
+      <Navbar
+        isLoggedIn={isLoggedIn}
+        openLogin={openLogin}
+        openRegister={openRegister}
+      />
       {/* Your Journey & Leaderboard Section */}
       <section className="w-full max-w-[1000px] mx-auto px-6 py-20 mt-16 grid grid-cols-1 lg:grid-cols-2 gap-10">
         {/* Your Journey */}

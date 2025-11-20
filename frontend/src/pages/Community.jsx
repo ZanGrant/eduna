@@ -1,5 +1,5 @@
 import React from "react";
-
+import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
@@ -11,7 +11,8 @@ import ranohImg from "../assets/images/RanohIsland.png";
 import vietnamImg from "../assets/images/VietnamCamp.png";
 import hutanImg from "../assets/images/HutanWisataMataKucing.png";
 
-const Community = () => {
+// Community:
+const Community = ({ isLoggedIn, openLogin, openRegister }) => {
   const navigate = useNavigate();
 
   // ================== REVIEW DESTINATIONS ==================
@@ -75,7 +76,14 @@ const Community = () => {
   ];
 
   return (
-  <div>
+    <div>
+      {/* NAVBAR */}
+      <Navbar
+        isLoggedIn={isLoggedIn}
+        openLogin={openLogin}
+        openRegister={openRegister}
+      />
+  
 
       {/* ===================== MAIN WRAPPER ===================== */}
       <div className="w-full max-w-[1100px] mx-auto px-6 pt-10 pb-10 mt-10">

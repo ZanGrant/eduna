@@ -1,5 +1,5 @@
 // src/pages/Login.jsx
-import React from "react";
+import React, { useState } from "react";
 import MuseumImage from "../assets/images/museum-community.svg";
 
 export default function Login({
@@ -8,10 +8,32 @@ export default function Login({
   onForgotPassword,
   onLoginSuccess,
 }) {
+  const [form, setForm] = useState({
+    username: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (field, value) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+    setErrors((prev) => ({ ...prev, [field]: "", general: "" }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: di sini normalnya cek username/password ke backend
-    if (onLoginSuccess) onLoginSuccess(); // kasih tahu Home kalo login sukses
+
+    const newErrors = {};
+    if (!form.username.trim()) newErrors.username = "Username wajib diisi.";
+    if (!form.password.trim()) newErrors.password = "Password wajib diisi.";
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    // ✅ FRONTEND ONLY: selama 2 field keisi, anggap sukses
+    if (onLoginSuccess) onLoginSuccess(); // setIsLoggedIn(true) di App
+    if (onClose) onClose();              // tutup modal login
   };
 
   return (
@@ -47,8 +69,14 @@ export default function Login({
               <p className="text-gray-600 mt-2">Login to continue</p>
             </div>
 
-            {/* PENTING: pakai onSubmit={handleSubmit} */}
+            {errors.general && (
+              <p className="text-red-500 text-sm mb-3 text-center">
+                {errors.general}
+              </p>
+            )}
+
             <form className="space-y-6" onSubmit={handleSubmit}>
+              {/* USERNAME */}
               <div>
                 <label className="block text-gray-700 font-medium mb-2">
                   Username
@@ -56,10 +84,22 @@ export default function Login({
                 <input
                   type="text"
                   placeholder="ex. imamganteng123"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 bg-[#f5f7ff] focus:ring-2 focus:ring-[#246afe]"
+                  value={form.username}
+                  onChange={(e) => handleChange("username", e.target.value)}
+                  className={`w-full border rounded-lg px-4 py-3 bg-[#f5f7ff] focus:ring-2 text-sm ${
+                    errors.username
+                      ? "border-red-500 focus:ring-red-400"
+                      : "border-gray-300 focus:ring-[#246afe]"
+                  }`}
                 />
+                {errors.username && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.username}
+                  </p>
+                )}
               </div>
 
+              {/* PASSWORD */}
               <div>
                 <label className="block text-gray-700 font-medium mb-2">
                   Password
@@ -67,8 +107,19 @@ export default function Login({
                 <input
                   type="password"
                   placeholder="ex. qwerty432"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 bg-[#f5f7ff] focus:ring-2 focus:ring-[#246afe]"
+                  value={form.password}
+                  onChange={(e) => handleChange("password", e.target.value)}
+                  className={`w-full border rounded-lg px-4 py-3 bg-[#f5f7ff] focus:ring-2 text-sm ${
+                    errors.password
+                      ? "border-red-500 focus:ring-red-400"
+                      : "border-gray-300 focus:ring-[#246afe]"
+                  }`}
                 />
+                {errors.password && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.password}
+                  </p>
+                )}
               </div>
 
               <div className="flex justify-between items-center text-sm">

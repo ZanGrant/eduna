@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import ScrollToTop from "./components/ScrollToTop";
-import Navbar from "./components/Navbar";
 
 import Home from "./pages/Home";
 import Explore from "./pages/Explore";
@@ -20,15 +19,18 @@ import MuseumModule4 from "./pages/MuseumModul4";
 import QuizMuseumRajaAliHaji from "./pages/QuizMuseumRajaAliHaji";
 import ReviewMuseum from "./pages/ReviewMuseum";
 import SubmitReview from "./pages/SubmitReview";
+import Profile from "./pages/Profile";
 
+// ⬅️ tambahkan import modal
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
-  // ⬇️ GLOBAL STATE (berlaku untuk semua halaman)
+  // 🔥 GLOBAL STATE LOGIN
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // 🔥 STATE MODAL
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   const [showForgot, setShowForgot] = useState(false);
@@ -37,14 +39,7 @@ function App() {
     <>
       <ScrollToTop />
 
-      {/* NAVBAR SELALU ADA DI ATAS */}
-      <Navbar
-        openLogin={() => setShowLogin(true)}
-        openRegister={() => setShowRegister(true)}
-        isLoggedIn={isLoggedIn}
-      />
-
-      {/* ========== MODAL LOGIN ========== */}
+      {/* ========= MODAL LOGIN ========= */}
       {showLogin && (
         <Login
           onClose={() => setShowLogin(false)}
@@ -57,13 +52,13 @@ function App() {
             setShowForgot(true);
           }}
           onLoginSuccess={() => {
-            setIsLoggedIn(true);   // ⬅️ begitu login sukses, icon profil ON
-            setShowLogin(false);
+            setIsLoggedIn(true);  // ⬅️ tandai sudah login
+            setShowLogin(false);  // ⬅️ tutup modal
           }}
         />
       )}
 
-      {/* ========== MODAL REGISTER ========== */}
+      {/* ========= MODAL REGISTER ========= */}
       {showRegister && (
         <Register
           onClose={() => setShowRegister(false)}
@@ -74,7 +69,7 @@ function App() {
         />
       )}
 
-      {/* ========== MODAL FORGOT PASSWORD ========== */}
+      {/* ========= MODAL FORGOT PASSWORD ========= */}
       {showForgot && (
         <ForgotPassword
           onClose={() => setShowForgot(false)}
@@ -85,21 +80,64 @@ function App() {
         />
       )}
 
-      {/* ROUTES HALAMAN UTAMA */}
+      {/* ========= ROUTES ========= */}
       <Routes>
-        <Route path="/" element={<Home />} />
-        {/* ⛔️ TIDAK PERLU route /login & /register lagi, karena sudah jadi overlay */}
-        {/* <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} /> */}
+        <Route
+          path="/"
+          element={
+            <Home
+              isLoggedIn={isLoggedIn}
+              openLogin={() => setShowLogin(true)}
+              openRegister={() => setShowRegister(true)}
+                onLogout={() => setIsLoggedIn(false)}
+            />
+          }
+        />
 
-        <Route path="/explore" element={<Explore />} />
-        <Route path="/challenge" element={<Challenge />} />
-        <Route path="/community" element={<Community />} />
+        <Route
+          path="/explore"
+          element={
+            <Explore
+              isLoggedIn={isLoggedIn}
+              openLogin={() => setShowLogin(true)}
+              openRegister={() => setShowRegister(true)}
+            />
+          }
+        />
+
+        <Route
+          path="/challenge"
+          element={
+            <Challenge
+              isLoggedIn={isLoggedIn}
+              openLogin={() => setShowLogin(true)}
+              openRegister={() => setShowRegister(true)}
+            />
+          }
+        />
+
+        <Route
+          path="/community"
+          element={
+            <Community
+              isLoggedIn={isLoggedIn}
+              openLogin={() => setShowLogin(true)}
+              openRegister={() => setShowRegister(true)}
+            />
+          }
+        />
+
         <Route path="/admin" element={<AdminPanel />} />
 
         <Route
           path="/museum-raja-ali-haji"
-          element={<ExploreMuseumRajaAliHaji />}
+          element={
+            <ExploreMuseumRajaAliHaji
+              isLoggedIn={isLoggedIn}
+              openLogin={() => setShowLogin(true)}
+              openRegister={() => setShowRegister(true)}
+            />
+          }
         />
 
         <Route path="/museum-raja-ali-haji/module-1" element={<MuseumModule1 />} />
@@ -107,12 +145,21 @@ function App() {
         <Route path="/museum-raja-ali-haji/module-3" element={<MuseumModule3 />} />
         <Route path="/museum-raja-ali-haji/module-4" element={<MuseumModule4 />} />
 
-        <Route
-          path="/quiz-museum-raja-ali-haji/utama"
-          element={<QuizMuseumRajaAliHaji />}
-        />
+        <Route path="/quiz-museum-raja-ali-haji/utama" element={<QuizMuseumRajaAliHaji />} />
         <Route path="/review-museum-raja-ali-haji" element={<ReviewMuseum />} />
         <Route path="/submit-review" element={<SubmitReview />} />
+
+        <Route
+          path="/profile"
+          element={
+            <Profile
+              isLoggedIn={isLoggedIn}
+              openLogin={() => setShowLogin(true)}
+              openRegister={() => setShowRegister(true)}
+              onLogout={() => setIsLoggedIn(false)}
+            />
+          }
+        />
       </Routes>
     </>
   );
