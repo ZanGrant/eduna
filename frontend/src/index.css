@@ -2,16 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 /* Abaikan garis kuning klo ada, itu anomalinya vscode */
-
+@import url('https://fonts.cdnfonts.com/css/satoshi');
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Satoshi", sans-serif;
 }
 
 body {
   background-color: #f5f5f5;
   color: #222;
-  font-family: sans-serif;
+  font-family: 'Satoshi',sans-serif;
 }
