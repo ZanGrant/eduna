@@ -15,7 +15,7 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// Mount router DULU
+// Mount router
 app.use("/api", router);
 
 // Connect DB, lalu listen

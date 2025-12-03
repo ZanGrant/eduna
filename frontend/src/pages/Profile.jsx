@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -10,15 +10,71 @@ export default function Profile({ isLoggedIn, openLogin, openRegister, onLogout 
 
   const [editMode, setEditMode] = useState(false);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(true);
 
   // DATA PROFIL
   const [profile, setProfile] = useState({
-    name: "Imam Maulana",
-    email: "imammaulana123@gmail.com",
-    phone: "+62843232431234",
-    birth: "2003-05-11",
-    gender: "Laki-laki",
+    username: "",
+    name: "",
+    email: "",
+    phone: "",
+    birth: "",
+    gender: "",
   });
+
+  // ✅ FETCH PROFILE ON MOUNT
+  useEffect(() => {
+    fetchProfile();
+  }, []);
+
+  const fetchProfile = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        navigate("/");
+        return;
+      }
+
+      const response = await fetch("http://localhost:3001/api/user/profile", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        credentials: "include",
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch profile");
+      }
+
+      const data = await response.json();
+
+      // Format birth date to YYYY-MM-DD
+      let formattedBirth = "";
+      if (data.birth) {
+        const d = new Date(data.birth);
+        const y = d.getFullYear();
+        const m = String(d.getMonth() + 1).padStart(2, "0");
+        const day = String(d.getDate()).padStart(2, "0");
+        formattedBirth = `${y}-${m}-${day}`;
+      }
+
+      setProfile({
+        username: data.username || "",
+        name: data.name || "",
+        email: data.email || "",
+        phone: data.phone || "",
+        birth: formattedBirth,
+        gender: data.gender || "Male",
+      });
+    } catch (err) {
+      console.error(err);
+      alert("Error loading profile");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const validate = () => {
     const newErrors = {};
@@ -31,23 +87,25 @@ export default function Profile({ isLoggedIn, openLogin, openRegister, onLogout 
 
     // PHONE VALIDATION
     const phoneRegex = /^\+?\d{10,15}$/;
-    if (!phoneRegex.test(profile.phone)) {
+    if (profile.phone && !phoneRegex.test(profile.phone)) {
       newErrors.phone = "Nomor HP harus berupa angka dan minimal 10 digit";
     }
 
     // DATE VALIDATION
-    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-    if (!dateRegex.test(profile.birth)) {
-      newErrors.birth = "Gunakan format YYYY-MM-DD";
-    } else {
-      const date = new Date(profile.birth);
-      if (isNaN(date.getTime())) {
-        newErrors.birth = "Tanggal tidak valid";
+    if (profile.birth) {
+      const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+      if (!dateRegex.test(profile.birth)) {
+        newErrors.birth = "Gunakan format YYYY-MM-DD";
+      } else {
+        const date = new Date(profile.birth);
+        if (isNaN(date.getTime())) {
+          newErrors.birth = "Tanggal tidak valid";
+        }
       }
     }
 
     // GENDER VALIDATION
-    if (!["Laki-laki", "Perempuan"].includes(profile.gender)) {
+    if (!["Male", "Female"].includes(profile.gender)) {
       newErrors.gender = "Jenis kelamin tidak valid";
     }
 
@@ -59,20 +117,52 @@ export default function Profile({ isLoggedIn, openLogin, openRegister, onLogout 
     setProfile({ ...profile, [field]: value });
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!validate()) return;
-    setEditMode(false);
-    console.log("Data berhasil disimpan:", profile);
+
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://localhost:3001/api/user/profile", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          name: profile.name,
+          email: profile.email,
+          phone: profile.phone,
+          birth: profile.birth,
+          gender: profile.gender,
+        }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        setErrors({ general: data.message || "Failed to update profile" });
+        return;
+      }
+
+      setEditMode(false);
+      alert("Profile updated successfully!");
+    } catch (err) {
+      console.error(err);
+      setErrors({ general: "Error updating profile" });
+    }
   };
 
   const handleLogout = () => {
-    if (onLogout) onLogout(); // panggil fungsi logout dari App.jsx
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    if (onLogout) onLogout();
     navigate("/");
   };
 
+  if (loading) return <div className="flex justify-center items-center h-screen">Loading...</div>;
+
   return (
     <div className="bg-white min-h-screen">
-      {/* NAVBAR HARUS TERIMA PROPS */}
       <Navbar
         isLoggedIn={isLoggedIn}
         openLogin={openLogin}
@@ -114,12 +204,24 @@ export default function Profile({ isLoggedIn, openLogin, openRegister, onLogout 
         {/* CARD DATA USER */}
         <div className="bg-white shadow-md rounded-xl border p-8 space-y-3">
 
+          {errors.general && (
+            <p className="text-red-500 text-sm mb-3">{errors.general}</p>
+          )}
+          
           <Field
             label="Name"
             editMode={editMode}
             value={profile.name}
             onChange={(v) => handleChange("name", v)}
             error={errors.name}
+          />
+
+          <Field
+            label="Username"
+            editMode={editMode}
+            value={profile.username}
+            onChange={() => {}}
+            error={errors.username}
           />
 
           <Field
@@ -139,7 +241,7 @@ export default function Profile({ isLoggedIn, openLogin, openRegister, onLogout 
           />
 
           <Field
-            label="Tanggal Lahir (YYYY-MM-DD)"
+            label="Birth Date"
             type="date"
             editMode={editMode}
             value={profile.birth}
@@ -158,8 +260,8 @@ export default function Profile({ isLoggedIn, openLogin, openRegister, onLogout 
                   value={profile.gender}
                   onChange={(e) => handleChange("gender", e.target.value)}
                 >
-                  <option value="Laki-laki">Laki-laki</option>
-                  <option value="Perempuan">Perempuan</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
                 </select>
               ) : (
                 <p className="text-gray-600">{profile.gender}</p>

@@ -1,3 +1,4 @@
+// db.js
 import mysql from "mysql2/promise";
 import dotenv from "dotenv";
 
@@ -20,10 +21,17 @@ export const connectDB = async () => {
       console.log("✅ MySQL connected!");
     } catch (err) {
       console.error("❌ MySQL connection error:", err.message);
-      process.exit(1); // stop server kalau koneksi gagal
+      process.exit(1);
     }
   }
   return db;
 };
+
+// ✅ ADD THIS: export query function
+export async function query(sql, params = []) {
+  if (!db) throw new Error("Database not initialized. Call connectDB() first.");
+  const [rows] = await db.execute(sql, params);
+  return [rows];
+}
 
 export default db;

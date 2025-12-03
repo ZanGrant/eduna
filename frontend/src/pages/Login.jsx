@@ -13,13 +13,14 @@ export default function Login({
     password: "",
   });
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (field, value) => {
     setForm((prev) => ({ ...prev, [field]: value }));
     setErrors((prev) => ({ ...prev, [field]: "", general: "" }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const newErrors = {};
@@ -31,9 +32,38 @@ export default function Login({
       return;
     }
 
-    // ✅ FRONTEND ONLY: selama 2 field keisi, anggap sukses
-    if (onLoginSuccess) onLoginSuccess(); // setIsLoggedIn(true) di App
-    if (onClose) onClose();              // tutup modal login
+    // Call BE API
+    setLoading(true);
+    try {
+      const response = await fetch("http://localhost:3001/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          username: form.username,
+          password: form.password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setErrors({ general: data.message || "Login failed" });
+        return;
+      }
+
+      // save token & user info if succeed
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      if (onLoginSuccess) onLoginSuccess();
+      if (onClose) onClose();
+    } catch (err) {
+      console.error(err);
+      setErrors({ general: "Network error. Please try again." });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -69,12 +99,6 @@ export default function Login({
               <p className="text-gray-600 mt-2">Login to continue</p>
             </div>
 
-            {errors.general && (
-              <p className="text-red-500 text-sm mb-3 text-center">
-                {errors.general}
-              </p>
-            )}
-
             <form className="space-y-6" onSubmit={handleSubmit}>
               {/* USERNAME */}
               <div>
@@ -86,6 +110,7 @@ export default function Login({
                   placeholder="ex. imamganteng123"
                   value={form.username}
                   onChange={(e) => handleChange("username", e.target.value)}
+                  disabled={loading}
                   className={`w-full border rounded-lg px-4 py-3 bg-[#f5f7ff] focus:ring-2 text-sm ${
                     errors.username
                       ? "border-red-500 focus:ring-red-400"
@@ -109,6 +134,7 @@ export default function Login({
                   placeholder="ex. qwerty432"
                   value={form.password}
                   onChange={(e) => handleChange("password", e.target.value)}
+                  disabled={loading}
                   className={`w-full border rounded-lg px-4 py-3 bg-[#f5f7ff] focus:ring-2 text-sm ${
                     errors.password
                       ? "border-red-500 focus:ring-red-400"
@@ -124,23 +150,28 @@ export default function Login({
 
               <div className="flex justify-between items-center text-sm">
                 <label className="flex items-center gap-2 text-gray-700">
-                  <input type="checkbox" className="accent-[#246afe]" />
+                  <input type="checkbox" className="accent-[#246afe]" disabled={loading} />
                   Remember me
                 </label>
                 <button
                   type="button"
                   className="text-[#246afe] hover:underline"
                   onClick={onForgotPassword}
+                  disabled={loading}
                 >
                   Forgot Password?
                 </button>
               </div>
+              <p className="text-sm mb-3 h-4 text-red-500">
+                {errors.general || ""}
+              </p>
 
               <button
                 type="submit"
-                className="w-full bg-[#246afe] hover:bg-[#1e55c9] text-white font-semibold py-3 rounded-lg"
+                disabled={loading}
+                className="w-full bg-[#246afe] hover:bg-[#1e55c9] text-white font-semibold py-3 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Login now
+                {loading ? "Logging in..." : "Login now"}
               </button>
             </form>
 
@@ -151,14 +182,14 @@ export default function Login({
             </div>
 
             <div className="flex justify-center space-x-6">
-              <button className="border p-3 rounded-full hover:bg-gray-100">
+              <button type="button" className="border p-3 rounded-full hover:bg-gray-100" disabled={loading}>
                 <img
                   src="https://cdn-icons-png.flaticon.com/512/733/733547.png"
                   className="w-6"
                   alt="facebook"
                 />
               </button>
-              <button className="border p-3 rounded-full hover:bg-gray-100">
+              <button type="button" className="border p-3 rounded-full hover:bg-gray-100" disabled={loading}>
                 <img
                   src="https://cdn-icons-png.flaticon.com/512/281/281764.png"
                   className="w-6"
@@ -168,11 +199,12 @@ export default function Login({
             </div>
 
             <p className="text-center mt-6 text-gray-700 text-sm">
-              Don’t have an account?{" "}
+              Don't have an account?{" "}
               <button
                 type="button"
                 className="text-[#246afe] font-medium hover:underline"
                 onClick={onGoRegister}
+                disabled={loading}
               >
                 Sign Up
               </button>
