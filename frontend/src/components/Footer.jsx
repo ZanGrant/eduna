@@ -17,11 +17,12 @@ const Footer = () => {
         {/* Section 1: Eduna Logo */}
         <div className="footer-logo-section">
           <img src={edunaLogo} alt="Eduna Logo" className="footer-logo" />
-          <div className="footer-placeholder">
-            <div className="placeholder-line"></div>
-            <div className="placeholder-line"></div>
-            <div className="placeholder-line"></div>
-            <div className="placeholder-line short"></div>
+          <div className="footer-text">
+            <p>
+              Infinite Learning / PT Kinema Systrans Multimedia
+              Jl. Hang Lekiu No.2, Sambau, Kecamatan Nongsa,
+              Kota Batam, Kepulauan Riau 29465
+            </p>
           </div>
         </div>
 
