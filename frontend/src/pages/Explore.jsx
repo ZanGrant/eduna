@@ -4,43 +4,17 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Search, SlidersHorizontalIcon } from "lucide-react";
 
-import museumImg from "../assets/images/Museum.png";
-import ranohImg from "../assets/images/RanohIsland.png";
-import vietnamImg from "../assets/images/VietnamCamp.png";
-import hutanImg from "../assets/images/HutanWisataMataKucing.png";
-import batamzooImg from "../assets/images/BatamZooParadise.png";
-import waterparkImg from "../assets/images/Waterpark.png";
-import tamanrusaImg from "../assets/images/TamanRusa.png";
-import megawisataImg from "../assets/images/MegaWisataOcarina.png";
-
 export default function Explore({ isLoggedIn, openLogin, openRegister }) {
   const [activeTab, setActiveTab] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [destinations, setDestinations] = useState([]); //Babayo
-  const navigate = useNavigate(); // ✅ Hook untuk pindah halaman
+  const navigate = useNavigate(); // Hook untuk pindah halaman
 
-  // const destinations = [
-  //   {
-  //     id: 1,
-  //     name: "Museum Raja Ali Haji Batam",
-  //     category: "Sejarah",
-  //     image: museumImg,
-  //     status: "available",
-  //     badge: "Learning Available",
-  //     path: "/museum-raja-ali-haji",
-  //   },
-  //   { id: 2, name: "Kampung Vietnam", category: "Sejarah", image: vietnamImg, status: "coming-soon" },
-  //   { id: 3, name: "Ranoh Island Resort", category: "Resort - Pantai", image: ranohImg, status: "coming-soon" },
-  //   { id: 4, name: "Waterpark Top 100 Batu Aji", category: "Waterpark", image: waterparkImg, status: "coming-soon" },
-  //   { id: 5, name: "Hutan Wisata Mata Kucing", category: "Hutan Wisata", image: hutanImg, status: "coming-soon" },
-  //   { id: 6, name: "Taman Rusa Sekupang", category: "Kebun Binatang - Taman", image: tamanrusaImg, status: "coming-soon" },
-  //   { id: 7, name: "Mega Wisata Ocarina", category: "Mega Wisata", image: megawisataImg, status: "coming-soon" },
-  //   { id: 8, name: "Batam Zoo Paradise", category: "Kebun Binatang", image: batamzooImg, status: "coming-soon" },
-  // ];
+  const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3001";
 
   // fetch data dari backend
   useEffect(() => {
-    fetch("http://localhost:3001/api/lokasi")
+    fetch(`${API_BASE}/api/lokasi`)
       .then(res => res.json())
       .then(data => {
         const mapped = data.map(d => ({
@@ -50,7 +24,7 @@ export default function Explore({ isLoggedIn, openLogin, openRegister }) {
           image: `src/assets/images/${d.image}`,
           status: d.active ? "available" : "coming-soon",
           badge: d.learning_tersedia ? "Learning Available" : null,
-          path: "/museum-raja-ali-haji",
+          path: d.path || null,
         }));
         setDestinations(mapped);
       })

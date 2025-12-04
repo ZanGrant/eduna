@@ -22,7 +22,7 @@ export default function Profile({ isLoggedIn, openLogin, openRegister, onLogout 
     gender: "",
   });
 
-  // ✅ FETCH PROFILE ON MOUNT
+  // FETCH PROFILE ON MOUNT
   useEffect(() => {
     fetchProfile();
   }, []);
@@ -34,8 +34,8 @@ export default function Profile({ isLoggedIn, openLogin, openRegister, onLogout 
         navigate("/");
         return;
       }
-
-      const response = await fetch("http://localhost:3001/api/user/profile", {
+      const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3001";
+      const response = await fetch(`${API_BASE}/api/user/profile`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -122,7 +122,8 @@ export default function Profile({ isLoggedIn, openLogin, openRegister, onLogout 
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:3001/api/user/profile", {
+      const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3001";
+      const response = await fetch(`${API_BASE}/api/user/profile`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
