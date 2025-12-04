@@ -162,7 +162,7 @@ export default function Profile({ isLoggedIn, openLogin, openRegister, onLogout 
   if (loading) return <div className="flex justify-center items-center h-screen">Loading...</div>;
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white min-h-screen pb-5">
       <Navbar
         isLoggedIn={isLoggedIn}
         openLogin={openLogin}
@@ -299,7 +299,6 @@ export default function Profile({ isLoggedIn, openLogin, openRegister, onLogout 
         </div>
       </div>
 
-      <Footer />
     </div>
   );
 }

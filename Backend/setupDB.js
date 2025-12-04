@@ -41,9 +41,21 @@ const queries = [
   );`,
 
   `INSERT INTO users (username, password_hash, fullname, email, phone, birth_date, gender)
-  VALUES ('testuser', '$2b$10$OzRh5szqVoFBtJysnupWFe3hYw3OXH/b.IANiiLATBWWDnU0PbGxW', 'Test User', 'test@example.com', '081234567890', '1990-01-15', 'Male');`
+  VALUES ('testuser', '$2b$10$OzRh5szqVoFBtJysnupWFe3hYw3OXH/b.IANiiLATBWWDnU0PbGxW', 'Test User', 'test@example.com', '081234567890', '1990-01-15', 'Male');`,
+
+  `CREATE TABLE IF NOT EXISTS admin (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    fullname VARCHAR(255),
+    image VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );`,
+
+  `INSERT INTO admin (username, password_hash, fullname) VALUES ('admin', '$2b$10$VFYoDKKO5j67pua.6jNUwOlWy.6yU1oXBiLOgNnz/PK43Xipmk.nK', 'Administrator');`
 ];
-// password_hash is bcrypt hash for 'password123'
+// User hased password is "password123"
+// Admin hashed password is "admin123"
 
 const setupDB = async () => {
   try {

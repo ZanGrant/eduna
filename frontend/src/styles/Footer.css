@@ -26,7 +26,7 @@
   width: auto;
   object-fit: contain;
   align-self: flex-start;
-  margin-left: -5px;
+  margin-left: -5px;   
 }
 .footer-text {
   display: flex;

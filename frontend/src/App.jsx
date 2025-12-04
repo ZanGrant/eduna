@@ -8,7 +8,6 @@ import Home from "./pages/Home";
 import Explore from "./pages/Explore";
 import Challenge from "./pages/Challenge";
 import Community from "./pages/Community";
-import AdminPanel from "./pages/admin/AdminPanel";
 import ExploreMuseumRajaAliHaji from "./pages/ExploreMuseumRajaAliHaji";
 
 import MuseumModule1 from "./pages/MuseumModul1";
@@ -29,6 +28,9 @@ import RewardHistory from "./pages/RewardHistory";  // <<-- IMPORT BENAR
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
+
+import AdminPanel from "./pages/admin/AdminPanel";
+import AdminForm from "./pages/admin/AdminForm";
 
 function App() {
   // GLOBAL LOGIN STATE
@@ -206,6 +208,10 @@ function App() {
             )
           }
         />
+
+        {/* ADMIN */}
+        <Route path="/admin-login" element={<AdminForm />} />
+        <Route path="/admin" element={<AdminPanel />} />
       </Routes>
     </>
   );
