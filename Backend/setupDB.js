@@ -1,3 +1,4 @@
+//setupDB.js (one time run script to setup database)
 import mysql from "mysql2/promise";
 import dotenv from "dotenv";
 

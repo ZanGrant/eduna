@@ -1,10 +1,19 @@
+//src/pages/admin/Destinations.jsx
 import { useState, useEffect } from "react";
+
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3001";
 
 export default function Destinations() {
   const [destinations, setDestinations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [newDestination, setNewDestination] = useState({ name: "", type: "", image: "", path: "" });
+
+  const [newData, setNewData] = useState({
+    nama_lokasi: "",
+    tipe: "",
+    image: "",
+    path: ""
+  });
 
   useEffect(() => {
     fetchDestinations();
@@ -12,7 +21,7 @@ export default function Destinations() {
 
   const fetchDestinations = async () => {
     try {
-      const response = await fetch("/api/destinations");
+      const response = await fetch(`${API_BASE}/api/lokasi`);
       if (!response.ok) throw new Error("Failed to fetch destinations");
       const data = await response.json();
       setDestinations(data);
@@ -23,27 +32,29 @@ export default function Destinations() {
     }
   };
 
-  const handleAddDestination = async (e) => {
+  const handleAdd = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/destinations", {
+      const response = await fetch(`${API_BASE}/api/lokasi`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newDestination),
+        body: JSON.stringify(newData)
       });
       if (!response.ok) throw new Error("Failed to add destination");
-      fetchDestinations(); // Refresh the list
-      setNewDestination({ name: "", type: "", image: "", path: "" }); // Reset form
+
+      setNewData({ nama_lokasi: "", tipe: "", image: "", path: "" });
+      fetchDestinations();
     } catch (err) {
       setError(err.message);
     }
   };
 
-  const handleDeleteDestination = async (id) => {
+  const handleDelete = async (id) => {
     try {
-      const response = await fetch(`/api/destinations/${id}`, { method: "DELETE" });
-      if (!response.ok) throw new Error("Failed to delete destination");
-      fetchDestinations(); // Refresh the list
+      const response = await fetch(`${API_BASE}/api/lokasi/${id}`, { method: "DELETE" });
+      if (!response.ok) throw new Error("Failed to delete");
+
+      fetchDestinations();
     } catch (err) {
       setError(err.message);
     }
@@ -55,40 +66,42 @@ export default function Destinations() {
   return (
     <div>
       <h2 className="text-xl font-semibold mb-3">Destinations</h2>
-      <form onSubmit={handleAddDestination} className="mb-4">
+
+      <form onSubmit={handleAdd} className="mb-4 flex gap-2">
         <input
           type="text"
           placeholder="Name"
-          value={newDestination.name}
-          onChange={(e) => setNewDestination({ ...newDestination, name: e.target.value })}
+          value={newData.nama_lokasi}
+          onChange={(e) => setNewData({ ...newData, nama_lokasi: e.target.value })}
           required
         />
         <input
           type="text"
           placeholder="Type"
-          value={newDestination.type}
-          onChange={(e) => setNewDestination({ ...newDestination, type: e.target.value })}
+          value={newData.tipe}
+          onChange={(e) => setNewData({ ...newData, tipe: e.target.value })}
           required
         />
         <input
           type="text"
           placeholder="Image URL"
-          value={newDestination.image}
-          onChange={(e) => setNewDestination({ ...newDestination, image: e.target.value })}
+          value={newData.image}
+          onChange={(e) => setNewData({ ...newData, image: e.target.value })}
         />
         <input
           type="text"
           placeholder="Path"
-          value={newDestination.path}
-          onChange={(e) => setNewDestination({ ...newDestination, path: e.target.value })}
+          value={newData.path}
+          onChange={(e) => setNewData({ ...newData, path: e.target.value })}
         />
-        <button type="submit">Add Destination</button>
+        <button type="submit">Add</button>
       </form>
+
       <ul>
-        {destinations.map((destination) => (
-          <li key={destination.id}>
-            {destination.name} - {destination.type}
-            <button onClick={() => handleDeleteDestination(destination.id)}>Delete</button>
+        {destinations.map((d) => (
+          <li key={d.id} className="flex justify-between w-80">
+            {d.nama_lokasi} ({d.tipe})
+            <button onClick={() => handleDelete(d.id)} className="text-red-600">Delete</button>
           </li>
         ))}
       </ul>

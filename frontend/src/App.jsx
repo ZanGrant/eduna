@@ -31,6 +31,9 @@ import ForgotPassword from "./pages/ForgotPassword";
 
 import AdminPanel from "./pages/admin/AdminPanel";
 import AdminForm from "./pages/admin/AdminForm";
+import Users from "./pages/admin/Users";
+import Destinations from "./pages/admin/Destinations";
+import Quiz from "./pages/admin/Quiz";
 
 function App() {
   // GLOBAL LOGIN STATE
@@ -210,8 +213,14 @@ function App() {
         />
 
         {/* ADMIN */}
-        <Route path="/admin-login" element={<AdminForm />} />
-        <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/admin/login" element={<AdminForm />} />
+        <Route path="/admin" element={<AdminPanel />}>
+          <Route index element={<Navigate to="destinations" replace />} />
+          <Route path="destinations" element={<Destinations />} />
+          <Route path="users" element={<Users />} />
+          <Route path="quiz" element={<Quiz />} />
+        </Route>
+        <Route path="*" element={<div style={{ padding: 20 }}>404 — Not Found</div>} />
       </Routes>
     </>
   );

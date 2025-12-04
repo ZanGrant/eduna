@@ -1,8 +1,8 @@
+//controllers/adminController.js
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { findAdminByUsername, findAdminById } from "../models/adminModel.js";
 import dotenv from "dotenv";
-
 dotenv.config();
 
 export async function adminLogin(req, res) {

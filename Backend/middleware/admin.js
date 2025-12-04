@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export function adminAuthMiddleware(req, res, next) {
+export function adminMiddleware(req, res, next) {
   try {
     const token = req.headers.authorization?.split(" ")[1];
     if (!token) {

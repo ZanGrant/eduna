@@ -43,8 +43,7 @@ const Navbar = ({ openLogin, openRegister, isLoggedIn  }) => {
             className={() =>
               window.location.pathname.startsWith("/explore") ||
               window.location.pathname.startsWith("/museum-raja-ali-haji")
-                ? `${baseClass} ${activeClass}`
-                : baseClass
+                ? `${baseClass} ${activeClass}` : baseClass
             }
           >
             Explore
@@ -69,8 +68,7 @@ const Navbar = ({ openLogin, openRegister, isLoggedIn  }) => {
               window.location.pathname.startsWith("/community") ||
               window.location.pathname.startsWith("/review-museum-raja-ali-haji") ||
               window.location.pathname.startsWith("/submit-review")
-                ? `${baseClass} ${activeClass}`
-                : baseClass
+                ? `${baseClass} ${activeClass}` : baseClass
             }
           >
             Community

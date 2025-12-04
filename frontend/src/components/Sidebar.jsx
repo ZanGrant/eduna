@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { MapPin, Users, HelpCircle } from "lucide-react";
 
 export default function Sidebar() {
   const location = useLocation();
@@ -16,13 +17,22 @@ export default function Sidebar() {
       {/* Navigation */}
       <nav className="space-y-2">
         <Link to="/admin/destinations" className={`block px-4 py-2 rounded-lg transition ${isActive("/admin/destinations")}`}>
-          📍 Destinations
+          <span className="inline-flex items-center">
+            <MapPin className="w-4 h-4 mr-2" />
+            Destinations
+          </span>
         </Link>
         <Link to="/admin/users" className={`block px-4 py-2 rounded-lg transition ${isActive("/admin/users")}`}>
-          👥 Users
+          <span className="inline-flex items-center">
+            <Users className="w-4 h-4 mr-2" />
+            Users
+          </span>
         </Link>
         <Link to="/admin/quiz" className={`block px-4 py-2 rounded-lg transition ${isActive("/admin/quiz")}`}>
-          ❓ Quiz
+          <span className="inline-flex items-center">
+            <HelpCircle className="w-4 h-4 mr-2" />
+            Quiz
+          </span>
         </Link>
       </nav>
     </div>
