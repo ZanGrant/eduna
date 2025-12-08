@@ -1,11 +1,14 @@
-//setupDB.js (one time run script to setup database)
+// setupDB.js (one time run script to setup database)
 import mysql from "mysql2/promise";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-// User password is "password123"
-// Admin password is "admin123"
+// User password hash = password123
+const userHash = "$2b$10$OzRh5szqVoFBtJysnupWFe3hYw3OXH/b.IANiiLATBWWDnU0PbGxW";
+// Admin password hash = admin123
+const adminHash = "$2b$10$VFYoDKKO5j67pua.6jNUwOlWy.6yU1oXBiLOgNnz/PK43Xipmk.nK";
+
 const queries = [
   `DROP DATABASE IF EXISTS eduna_db;`,
   `CREATE DATABASE eduna_db;`,
@@ -20,9 +23,8 @@ const queries = [
     image VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );`,
-
   `INSERT INTO admin (username, password_hash, fullname)
-   VALUES ('admin', '$2b$10$VFYoDKKO5j67pua.6jNUwOlWy.6yU1oXBiLOgNnz/PK43Xipmk.nK', 'Administrator');`,
+   VALUES ('admin', '${adminHash}', 'Administrator');`,
 
   /* USERS */
   `CREATE TABLE users (
@@ -38,9 +40,12 @@ const queries = [
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );`,
 
+  /* 3 USERS */
   `INSERT INTO users (username, password_hash, fullname, email, phone, birth_date, gender)
-   VALUES ('testuser', '$2b$10$OzRh5szqVoFBtJysnupWFe3hYw3OXH/b.IANiiLATBWWDnU0PbGxW',
-   'Test User', 'test@example.com', '081234567890', '1990-01-15', 'Male');`,
+   VALUES
+   ('testuser', '${userHash}', 'Test User', 'test@example.com', '081234567890', '1990-01-15', 'Male'),
+   ('user2', '${userHash}', 'User Dua', 'user2@example.com', '081111111111', '1995-05-20', 'Female'),
+   ('user3', '${userHash}', 'User Tiga', 'user3@example.com', '082222222222', '1998-12-01', 'Male');`,
 
   /* DESTINATIONS */
   `CREATE TABLE lokasi (
@@ -87,19 +92,38 @@ const queries = [
     FOREIGN KEY (lokasi_id) REFERENCES lokasi(id) ON DELETE CASCADE
   );`,
 
+  /* 3 QUIZ (1 per lokasi pertama 3 lokasi) */
+  `INSERT INTO quiz (lokasi_id, title) VALUES
+    (1, 'Museum Quiz'),
+    (2, 'Vietnam Camp Quiz'),
+    (3, 'Ranoh Island Quiz');`,
+
   /* QUIZ QUESTIONS */
-  `CREATE TABLE quiz_questions (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    quiz_id INT NOT NULL,
-    question TEXT NOT NULL,
-    correct_answer VARCHAR(255) NOT NULL,
-    wrong_answer_one VARCHAR(255),
-    wrong_answer_two VARCHAR(255),
-    wrong_answer_three VARCHAR(255),
-    points INT DEFAULT 0,
-    image VARCHAR(255),
-    FOREIGN KEY (quiz_id) REFERENCES quiz(id) ON DELETE CASCADE
-  );`,
+  `CREATE TABLE quiz_questions ( 
+  id INT AUTO_INCREMENT PRIMARY KEY, 
+  quiz_id INT NOT NULL, 
+  question TEXT NOT NULL, 
+  correct_answer VARCHAR(255) NOT NULL, 
+  wrong_answer_one VARCHAR(255), 
+  wrong_answer_two VARCHAR(255), 
+  wrong_answer_three VARCHAR(255), points INT DEFAULT 0, 
+  image VARCHAR(255), 
+  FOREIGN KEY (quiz_id) REFERENCES quiz(id) ON DELETE CASCADE );`,
+
+  /* 10 QUESTIONS PER QUIZ FOR FIRST 2 QUIZZES */
+  `INSERT INTO quiz_questions 
+  (quiz_id, question, correct_answer, wrong_answer_one, wrong_answer_two, wrong_answer_three, points)
+  VALUES
+  (1, 'Siapakah nama pahlawan nasional yang disematkan pada nama Museum Batam Raja Ali Haji?', 'Raja Ali Haji', 'Cut Nyak Dien', 'Raja Haji Fisabilillah', 'Tuanku Tambusai', 10),
+  (1, 'Karya Raja Ali Haji yang paling terkenal dan berisi nasihat moral dan etika kehidupan adalah?', 'Gurindam 12', 'Tuhfat al-Nafis', 'Syair Perahu', 'Hikayat Abdullah', 10),
+  (1, 'Raja Ali Haji dikenal sebagai pelopor modernisasi bahasa apa?', 'Bahasa Melayu', 'Bahasa Arab', 'Bahasa Belanda', 'Bahasa Inggris', 10),
+  (1, 'Koleksi Museum Raja Ali Haji yang menampilkan pakaian adat dan perlengkapan rumah tangga Melayu tempo dulu disebut?', 'Koleksi Etnografi', 'Koleksi Seni & Kerajinan', 'Koleksi Sejarah', 'Koleksi Arkeologi', 10),
+  (1, 'Hidangan ikonik khas Kepri yang direbus dan disantap dengan sambal spesial adalah?', 'Gonggong', 'Mie Tarempa', 'Otak-Otak', 'Lempeng Sagu', 10),
+  (1, 'Kerajinan Miniatur Perahu Lancang Kuning melambangkan apa?', 'Semangat pelaut & warisan maritim Kepri', 'Ketekunan para pengrajin', 'Kekayaan hasil laut Kepri', 'Kemakmuran kota Batam', 10),
+  (1, 'Motif pada Kerajinan Batik Gonggong terinspirasi dari apa?', 'Cangkang gonggong', 'Bentuk perahu lancang kuning', 'Tumbuhan pesisir', 'Bunga tanjung', 10),
+  (1, 'Pada tahun berapa Batam ditetapkan sebagai kota otonom?', '1999', '1971', '1973', '2002', 10),
+  (1, 'Makanan pokok masyarakat Melayu zaman dahulu yang diolah menjadi lempengan yang dibakar, biasanya disajikan dengan ikan kuah pedas, disebut?', 'Lempeng Sagu', 'Otak-Otak', 'Gonggong', 'Mie Tarempa', 10),
+  (1, 'Selain sebagai pusat peradaban Melayu, Kepri juga menjadi tempat yang selalu bertemunya apa?', 'Berbagai kebudayaan', 'Nelayan', 'Kapal militer', 'Wisatawan asing', 10);`,
 
   /* COUPON */
   `CREATE TABLE coupon (
@@ -109,31 +133,44 @@ const queries = [
     active BOOLEAN DEFAULT TRUE
   );`,
 
-  /* USER COUPON REDEMPTION */
-  `CREATE TABLE user_coupon (
+  /* POST (Postingan) */
+  `CREATE TABLE postingan (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    coupon_id INT NOT NULL,
-    redeemed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (coupon_id) REFERENCES coupon(id) ON DELETE CASCADE
+    deskripsi TEXT,
+    image_path1 VARCHAR(255),
+    image_path2 VARCHAR(255),
+    image_path3 VARCHAR(255),
+    liked INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
   );`,
 
-  /* POSTS */
-  `CREATE TABLE post (
+  /* 3 POSTINGAN */
+  `INSERT INTO postingan (user_id, deskripsi, image_path1, image_path2, image_path3, liked)
+   VALUES
+   (1, 'Postingan dari user 1', 'p1a.png', 'p1b.png', 'p1c.png', 5),
+   (2, 'Postingan dari user 2', 'p2a.png', 'p2b.png', 'p2c.png', 3),
+   (3, 'Postingan dari user 3', 'p3a.png', 'p3b.png', 'p3c.png', 7);`,
+
+  /* COMMENTS */
+  `CREATE TABLE comments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    lokasi_id INT NOT NULL,
-    description TEXT,
-    image1 VARCHAR(255),
-    image2 VARCHAR(255),
-    image3 VARCHAR(255),
-    likes INT DEFAULT 0,
-    dislikes INT DEFAULT 0,
+    post_id INT NOT NULL,
+    deskripsi TEXT,
+    liked INT DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (lokasi_id) REFERENCES lokasi(id) ON DELETE CASCADE
-  );`
+    FOREIGN KEY (post_id) REFERENCES postingan(id) ON DELETE CASCADE
+  );`,
+
+  /* 3 COMMENTS */
+  `INSERT INTO comments (user_id, post_id, deskripsi, liked)
+   VALUES
+   (1, 1, 'Comment dari user 1', 1),
+   (2, 2, 'Comment dari user 2', 2),
+   (3, 3, 'Comment dari user 3', 3);`
 ];
 
 const setupDB = async () => {
@@ -145,7 +182,7 @@ const setupDB = async () => {
       multipleStatements: true
     });
 
-    for (let q of queries) {
+    for (let q of queries.flat()) {
       await connection.query(q);
     }
 
