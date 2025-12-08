@@ -30,8 +30,8 @@ export default function AdminPanel() {
       <div className="flex-1 bg-gray-50 min-h-screen">
         <div className="bg-white shadow p-4 flex justify-end items-center gap-4">
           <div className="text-right">
-            <p className="font-semibold text-gray-800">{admin.fullname || admin.username}</p>
-            <p className="text-sm text-gray-500">Administrator</p>
+            <p className="font-semibold text-gray-800">{admin.fullname || "Default Admin"}</p>
+            <p className="text-sm text-gray-500">{admin.username || "Administrator"}</p>
           </div>
 
           {admin.image ? (

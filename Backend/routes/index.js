@@ -4,6 +4,7 @@ import lokasiRoute from "./lokasi.js";
 import authRoutes from "./auth.js";
 import userRoutes from "./user.js";
 import adminRoutes from "./admin.js";
+import quizRoutes from "./quiz.js";
 
 const router = express.Router();
 
@@ -11,5 +12,6 @@ router.use("/lokasi", lokasiRoute);
 router.use("/auth", authRoutes);
 router.use("/users", userRoutes);
 router.use("/admin", adminRoutes);
+router.use("/quiz", quizRoutes);
 
 export default router;

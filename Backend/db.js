@@ -27,7 +27,7 @@ export const connectDB = async () => {
   return db;
 };
 
-// ✅ ADD THIS: export query function
+// export query function
 export async function query(sql, params = []) {
   if (!db) throw new Error("Database not initialized. Call connectDB() first.");
   const [rows] = await db.execute(sql, params);
