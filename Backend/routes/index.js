@@ -5,6 +5,7 @@ import authRoutes from "./auth.js";
 import userRoutes from "./user.js";
 import adminRoutes from "./admin.js";
 import quizRoutes from "./quiz.js";
+import couponRoutes from "./coupon.js";
 
 const router = express.Router();
 
@@ -13,5 +14,6 @@ router.use("/auth", authRoutes);
 router.use("/users", userRoutes);
 router.use("/admin", adminRoutes);
 router.use("/quiz", quizRoutes);
+router.use("/coupon", couponRoutes)
 
 export default router;

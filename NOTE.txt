@@ -1,12 +1,15 @@
 Sebelum npm install, hapus dulu package-lock.json
-Jalankan npm install di Terminal, tempat untuk npm install:
+Jalankan npm install di Terminal, lokasi direktori untuk npm install:
 - folder dasar (Eduna)
 - folder backend
 - folder frontend
 
-==== MYSQL ====
+==== Setup Backend ====
 PASTIKAN MYSQL SUDAH TERINSTALL
 Di Terminal, jalanin ini:
-cd Backend
-node setupDB.js (untuk masukin data dummy)
+cd ke folder Backend
 node server.js (untuk mastiin server backend masuk dgn dbnya terhubung)
+node setupDB.js (untuk masukin data dummy)
+
+==== Start System ====
+Setelah setup semua, pada folder dasar di Terminal, jalankan npm start

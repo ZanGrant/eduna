@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 .env
+note.txt
+uploads/quiz

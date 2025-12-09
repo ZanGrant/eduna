@@ -34,6 +34,7 @@ import AdminForm from "./pages/admin/AdminForm";
 import Users from "./pages/admin/Users";
 import Destinations from "./pages/admin/Destinations";
 import QuizManager from "./pages/admin/QuizManager";
+import Coupon from "./pages/admin/Coupon";
 
 function App() {
   // GLOBAL LOGIN STATE
@@ -219,6 +220,7 @@ function App() {
           <Route path="destinations" element={<Destinations />} />
           <Route path="users" element={<Users />} />
           <Route path="quiz" element={<QuizManager />} />
+          <Route path="coupon" element={<Coupon />} />
         </Route>
         <Route path="*" element={<div style={{ padding: 20 }}>404 — Not Found</div>} />
       </Routes>

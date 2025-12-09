@@ -1,5 +1,6 @@
+// src/components/Sidebar.jsx
 import { Link, useLocation } from "react-router-dom";
-import { MapPin, Users, HelpCircle } from "lucide-react";
+import { MapPin, Users, HelpCircle, Ticket } from "lucide-react";
 
 export default function Sidebar() {
   const location = useLocation();
@@ -22,18 +23,28 @@ export default function Sidebar() {
             Destinations
           </span>
         </Link>
+
         <Link to="/admin/users" className={`block px-4 py-2 rounded-lg transition ${isActive("/admin/users")}`}>
           <span className="inline-flex items-center">
             <Users className="w-4 h-4 mr-2" />
             Users
           </span>
         </Link>
+
         <Link to="/admin/quiz" className={`block px-4 py-2 rounded-lg transition ${isActive("/admin/quiz")}`}>
           <span className="inline-flex items-center">
             <HelpCircle className="w-4 h-4 mr-2" />
             Quiz
           </span>
         </Link>
+
+        <Link to="/admin/coupon" className={`block px-4 py-2 rounded-lg transition ${isActive("/admin/coupon")}`}>
+          <span className="inline-flex items-center">
+            <Ticket className="w-4 h-4 mr-2" />
+            Coupon
+          </span>
+        </Link>
+
       </nav>
     </div>
   );

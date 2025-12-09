@@ -39,8 +39,6 @@ const queries = [
     total_points INT DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );`,
-
-  /* 3 USERS */
   `INSERT INTO users (username, password_hash, fullname, email, phone, birth_date, gender)
    VALUES
    ('testuser', '${userHash}', 'Test User', 'test@example.com', '081234567890', '1990-01-15', 'Male'),
@@ -58,7 +56,6 @@ const queries = [
     path VARCHAR(255),
     gmaps_iframe TEXT
   );`,
-
   `INSERT INTO lokasi (nama_lokasi, tipe, learning_tersedia, active, image, path) VALUES
   ('Museum Raja Ali Haji Batam', 'History', TRUE, TRUE, 'Museum.png', '/museum-raja-ali-haji'),
   ('Kampung Vietnam', 'History', FALSE, FALSE, 'VietnamCamp.png', '/vietnam-camp'),
@@ -91,8 +88,6 @@ const queries = [
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (lokasi_id) REFERENCES lokasi(id) ON DELETE CASCADE
   );`,
-
-  /* 3 QUIZ (1 per lokasi pertama 3 lokasi) */
   `INSERT INTO quiz (lokasi_id, title) VALUES
     (1, 'Museum Quiz'),
     (2, 'Vietnam Camp Quiz'),
@@ -109,8 +104,7 @@ const queries = [
   wrong_answer_three VARCHAR(255), points INT DEFAULT 0, 
   image VARCHAR(255), 
   FOREIGN KEY (quiz_id) REFERENCES quiz(id) ON DELETE CASCADE );`,
-
-  /* 10 QUESTIONS PER QUIZ FOR FIRST 2 QUIZZES */
+  /* 10 QUESTIONS QUIZ */
   `INSERT INTO quiz_questions 
   (quiz_id, question, correct_answer, wrong_answer_one, wrong_answer_two, wrong_answer_three, points)
   VALUES
@@ -132,6 +126,10 @@ const queries = [
     points_required INT NOT NULL,
     active BOOLEAN DEFAULT TRUE
   );`,
+  `INSERT INTO coupon (name, points_required, active) VALUES
+  ('Discount 10%', 100, TRUE),
+  ('Discount 25%', 250, TRUE),
+  ('Free Gift', 300, TRUE);`,
 
   /* POST (Postingan) */
   `CREATE TABLE postingan (
