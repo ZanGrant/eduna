@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import museumImage from "../assets/images/museum-community.svg";
-import logo from "../assets/Images/eduna-logo.png";
+import logo from "../assets/images/eduna-logo.png";
 import profileIcon from "../assets/icons/Icon Leaderboard 1.svg";
 import heroImage from "../assets/images/RajaAliHaji.svg";
 
