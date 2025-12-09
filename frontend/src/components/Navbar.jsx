@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import logo from "../assets/Images/eduna-logo.png";
+import logo from "../assets/images/eduna-logo.png";
 import ProfileIcon from "../assets/icons/Icon Leaderboard 1.svg";
 
 const Navbar = ({ openLogin, openRegister, isLoggedIn  }) => {
