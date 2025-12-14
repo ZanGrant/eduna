@@ -10,7 +10,7 @@ const app = express();
 
 // Middleware global
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: ["http://localhost:5173","http://eduna.infinitelearningstudent.id"],
   credentials: true
 }));
 app.use(express.json());

@@ -5,7 +5,7 @@ Jalankan npm install di Terminal, lokasi direktori untuk npm install:
 - folder frontend
 
 ==== Setup Backend ====
-PASTIKAN MYSQL SUDAH TERINSTALL
+PASTIKAN MYSQL SUDAH TERINSTALL, Wajib simpan username dan password MySQL
 Di Terminal, jalanin ini:
 cd ke folder Backend
 node server.js (untuk mastiin server backend masuk dgn dbnya terhubung)
